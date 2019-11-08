@@ -3,6 +3,7 @@ package application;
 public class Admin extends Person{
 	private String username;
 	private String password;
+	private int id;
 	
 	Admin(){
 		
@@ -32,6 +33,12 @@ public class Admin extends Person{
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public int getId() {
+		return id;
 	}
 	
 }
