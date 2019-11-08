@@ -25,6 +25,11 @@ public class DBVolunteer {
 		
 	}
 	
+	public Connection getConnection() {
+		setConnection();
+		return this.connection;
+	}
+	
 	private void setConnection() {
 		try {
 			connection = DriverManager.getConnection("jdbc:mysql://45.55.136.114/csc3610_Group3_finalProject", "csc3610", "csc3610");
