@@ -18,6 +18,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
+import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
@@ -49,6 +50,9 @@ public class HomePageController {
 
 	@FXML
 	private Hyperlink newUser;
+	
+	@FXML
+	private Label errorMessage;
 
 	@FXML
 	public void initialize() throws FileNotFoundException {
@@ -69,70 +73,91 @@ public class HomePageController {
 
 		Continue.setOnAction((event) -> {
 			Stage thirdStage = (Stage) Continue.getScene().getWindow();
+			CheckUserPass check = new CheckUserPass();
 			if (Volunteer.isSelected()) {
-				try {
+				int correctUserPass = check.CheckUserPassVolunteer(userName.getText(), Password.getText());
+				if (correctUserPass == 1) {
+					try {
+						thirdStage.setTitle("Aurora Food Pantry Volunteer Page");
+						BorderPane root = (BorderPane) FXMLLoader.load(getClass().getResource("Volunteer_Scene.fxml"));
+						Scene scene = new Scene(root, 700, 700);
+						scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+						thirdStage.setScene(scene);
+						thirdStage.show();
+					} catch (Exception e) {
+						e.printStackTrace();
 
-					thirdStage.setTitle("Aurora Food Pantry Volunteer Page");
-					BorderPane root = (BorderPane) FXMLLoader.load(getClass().getResource("Volunteer_Scene.fxml"));
-					Scene scene = new Scene(root, 700, 700);
-					scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-					thirdStage.setScene(scene);
-					thirdStage.show();
-				} catch (Exception e) {
-					e.printStackTrace();
-
+					}
+				} else if (correctUserPass == 0) {
+					errorMessage.setText("Username/Password wrong");
+				} else {
+					System.out.print("\nSomething went wrong");
 				}
+				
 			} else if (Employee.isSelected()) {
-				EmployeeTable tab = new EmployeeTable();
-				HashMap<Integer, EmployeeClass> a = tab.getEmployees();
+				int correctUserPass = check.CheckUserPassEmployee(userName.getText(), Password.getText());
+				if (correctUserPass == 1) {
+					EmployeeTable tab = new EmployeeTable();
+					HashMap<Integer, EmployeeClass> a = tab.getEmployees();
 
-				System.out.println(a.keySet());
+					System.out.println(a.keySet());
 
-				for (int key : a.keySet()) {
-					if (userName.getText().equals(a.get(key).getEmployeeUser())) {
-						if (Password.getText().equals(a.get(key).getEmployeePass())) {
-							System.out.println(a.get(key).toString());
-							File f = new File("EMPID.dat");
-							try {
+					for (int key : a.keySet()) {
+						if (userName.getText().equals(a.get(key).getEmployeeUser())) {
+							if (Password.getText().equals(a.get(key).getEmployeePass())) {
+								System.out.println(a.get(key).toString());
+								File f = new File("EMPID.dat");
+								try {
 
-								System.out.println(a.get(key).getEmployeeID());
+									System.out.println(a.get(key).getEmployeeID());
 
-								FileOutputStream fos = new FileOutputStream(f);
-								ObjectOutputStream oos = new ObjectOutputStream(fos);
-								oos.writeObject(a.get(key));
-								FileInputStream fis = new FileInputStream(f);
-								ObjectInputStream ios = new ObjectInputStream(fis);
-								System.out.println(ios.readObject());
+									FileOutputStream fos = new FileOutputStream(f);
+									ObjectOutputStream oos = new ObjectOutputStream(fos);
+									oos.writeObject(a.get(key));
+									FileInputStream fis = new FileInputStream(f);
+									ObjectInputStream ios = new ObjectInputStream(fis);
+									System.out.println(ios.readObject());
 
-							} catch (IOException | ClassNotFoundException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
+								} catch (IOException | ClassNotFoundException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
 							}
 						}
 					}
-				}
-				try {
-					thirdStage.setTitle("Aurora Food Pantry Employee Page");
-					AnchorPane root = FXMLLoader.load(getClass().getResource("Employee_Scene.fxml"));
-					Scene scene = new Scene(root, 700, 700);
-					scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-					thirdStage.setScene(scene);
-					thirdStage.show();
-				} catch (Exception e) {
-					e.printStackTrace();
+					try {
+						thirdStage.setTitle("Aurora Food Pantry Employee Page");
+						AnchorPane root = FXMLLoader.load(getClass().getResource("Employee_Scene.fxml"));
+						Scene scene = new Scene(root, 700, 700);
+						scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+						thirdStage.setScene(scene);
+						thirdStage.show();
+					} catch (Exception e) {
+						e.printStackTrace();
 
+					}
+				} else if (correctUserPass == 0) {
+					errorMessage.setText("Username/Password wrong");
+				} else {
+					System.out.print("\nWell, this didn't work");
 				}
 			} else if (Admin.isSelected()) {
-				try {
-					thirdStage.setTitle("Aurora Food Pantry Admin Page");
-					BorderPane root = (BorderPane) FXMLLoader.load(getClass().getResource("AdminPage.fxml"));
-					Scene scene = new Scene(root, 700, 700);
-					scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-					thirdStage.setScene(scene);
-					thirdStage.show();
-				} catch (Exception e) {
-					e.printStackTrace();
-
+				int correctUserPass = check.CheckUserPassAdmin(userName.getText(), Password.getText());
+				if (correctUserPass == 1) {
+					try {
+						thirdStage.setTitle("Aurora Food Pantry Admin Page");
+						BorderPane root = (BorderPane) FXMLLoader.load(getClass().getResource("AdminPage.fxml"));
+						Scene scene = new Scene(root, 700, 700);
+						scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+						thirdStage.setScene(scene);
+						thirdStage.show();
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				} else if (correctUserPass == 0) {
+					errorMessage.setText("Username/Password wrong");
+				} else {
+					System.out.print("\nThat wasn't supposed to happen");
 				}
 			} else {
 				System.out.println("You need to select a radio button.");
