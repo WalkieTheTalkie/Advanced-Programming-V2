@@ -77,9 +77,37 @@ public class HomePageController {
 			if (Volunteer.isSelected()) {
 				int correctUserPass = check.CheckUserPassVolunteer(userName.getText(), Password.getText());
 				if (correctUserPass == 1) {
+					VolunteerTable tab = new VolunteerTable();
+					HashMap<Integer, Volunteer> a = tab.getVolunteers();
+
+					System.out.println(a.keySet());
+
+					for (int key : a.keySet()) {
+						if (userName.getText().equals(a.get(key).getUserName())) {
+							if (Password.getText().equals(a.get(key).getPassword())) {
+								System.out.println(a.get(key).toString());
+								File f = new File("EMPID.dat");
+								try {
+
+									System.out.println(a.get(key).getVolunteerID());
+
+									FileOutputStream fos = new FileOutputStream(f);
+									ObjectOutputStream oos = new ObjectOutputStream(fos);
+									oos.writeObject(a.get(key));
+									FileInputStream fis = new FileInputStream(f);
+									ObjectInputStream ios = new ObjectInputStream(fis);
+									System.out.println(ios.readObject());
+
+								} catch (IOException | ClassNotFoundException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+							}
+						}
+					}
 					try {
 						thirdStage.setTitle("Aurora Food Pantry Volunteer Page");
-						BorderPane root = (BorderPane) FXMLLoader.load(getClass().getResource("Volunteer_Scene.fxml"));
+						BorderPane root = FXMLLoader.load(getClass().getResource("Volunteer_Scene.fxml"));
 						Scene scene = new Scene(root, 700, 700);
 						scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 						thirdStage.setScene(scene);
@@ -144,6 +172,34 @@ public class HomePageController {
 			} else if (Admin.isSelected()) {
 				int correctUserPass = check.CheckUserPassAdmin(userName.getText(), Password.getText());
 				if (correctUserPass == 1) {
+					AdminTable tab = new AdminTable();
+					HashMap<Integer, Admin> a = tab.getAdmin();
+
+					System.out.println(a.keySet());
+
+					for (int key : a.keySet()) {
+						if (userName.getText().equals(a.get(key).getUsername())) {
+							if (Password.getText().equals(a.get(key).getPassword())) {
+								System.out.println(a.get(key).toString());
+								File f = new File("EMPID.dat");
+								try {
+
+									System.out.println(a.get(key).getId());
+
+									FileOutputStream fos = new FileOutputStream(f);
+									ObjectOutputStream oos = new ObjectOutputStream(fos);
+									oos.writeObject(a.get(key));
+									FileInputStream fis = new FileInputStream(f);
+									ObjectInputStream ios = new ObjectInputStream(fis);
+									System.out.println(ios.readObject());
+
+								} catch (IOException | ClassNotFoundException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+							}
+						}
+					}
 					try {
 						thirdStage.setTitle("Aurora Food Pantry Admin Page");
 						BorderPane root = (BorderPane) FXMLLoader.load(getClass().getResource("AdminPage.fxml"));

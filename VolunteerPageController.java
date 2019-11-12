@@ -1,10 +1,19 @@
 package application;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
 
 public class VolunteerPageController {
 	@FXML
@@ -14,11 +23,8 @@ public class VolunteerPageController {
 	private RadioButton editProfile;
 
 	@FXML
-	private RadioButton viewWorkHours;
-
-	@FXML
 	private RadioButton logWorkHours;
-	
+
 	@FXML
 	private ToggleGroup volOptions;
 
@@ -29,23 +35,71 @@ public class VolunteerPageController {
 	private Button selected;
 
 	@FXML
-	private Button submit;
+	private Button submitTicket;
+
+	@FXML
+	private Button logOut;
 
 	public void initialize() {
+
 		selected.setOnAction((event) -> {
-			if(viewProfile.isSelected()){
-				
-			}else if(editProfile.isSelected()) {
-				
-			}else if(viewWorkHours.isSelected()) {
-				
-			}else if(logWorkHours.isSelected()) {
-				
-			}else {
-				System.out.println("This is not working");
+			int i;
+			try {
+				FileInputStream fis = new FileInputStream("EMPID.dat");
+				ObjectInputStream ios = new ObjectInputStream(fis);
+				Volunteer e = (Volunteer) ios.readObject();
+				if (viewProfile.isSelected()) {
+					area.appendText(e.toString());
+					area.appendText("\n\n ------------- \n\n");
+				} else if (editProfile.isSelected()) {
+
+					area.appendText("\n\n ------------- \n\n");
+				} else if (logWorkHours.isSelected()) {
+					Stage thirdStage = new Stage();
+					thirdStage.setTitle("Aurora Food Pantry Working Hours Page");
+					BorderPane root;
+					try {
+						root = (BorderPane) FXMLLoader.load(getClass().getResource("WorkHourLogger.fxml"));
+						Scene scene = new Scene(root, 500, 500);
+						scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+						thirdStage.setScene(scene);
+						thirdStage.show();
+
+					} catch (IOException ie) {
+						// TODO Auto-generated catch block
+						ie.printStackTrace();
+
+					}
+				} else {
+					System.out.println("This is not working");
+				}
+
+			} catch (IOException | ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
 			}
-			
 		});
+
+		logOut.setOnAction((event) -> {
+			Stage thirdStage = (Stage) logOut.getScene().getWindow();
+			thirdStage.setTitle("Aurora Food Pantry Home Page");
+			BorderPane root;
+			try {
+				root = (BorderPane) FXMLLoader.load(getClass().getResource("HomePage.fxml"));
+				Scene scene = new Scene(root, 700, 700);
+				scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+				thirdStage.setScene(scene);
+				thirdStage.show();
+
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+
+			}
+			File f = new File("EMPID.dat");
+			System.out.println(f.delete());
+		});
+
 	}
 
 }
