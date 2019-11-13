@@ -10,25 +10,25 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane prefHeight="591.0" prefWidth="672.0" style="-fx-background-color: aaffaa;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.VolunteerPageController">
+<BorderPane prefHeight="591.0" prefWidth="672.0" style="-fx-background-color: aaffaa;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.VolunteerPageController">
    <center>
       <AnchorPane prefHeight="664.0" prefWidth="672.0" style="-fx-background-color: aaeeff;" BorderPane.alignment="CENTER">
          <children>
-            <TextArea layoutX="142.0" layoutY="148.0" prefHeight="273.0" prefWidth="386.0" />
-            <Button layoutX="283.0" layoutY="456.0" mnemonicParsing="false" text="Request Ticket" />
-            <RadioButton layoutX="290.0" layoutY="52.0" mnemonicParsing="false" text="View Profile">
+            <TextArea fx:id="area" layoutX="142.0" layoutY="148.0" prefHeight="273.0" prefWidth="386.0" />
+            <Button fx:id="submitTicket" layoutX="283.0" layoutY="456.0" mnemonicParsing="false" text="Request Ticket" />
+            <RadioButton fx:id="viewProfile" layoutX="290.0" layoutY="52.0" mnemonicParsing="false" text="View Profile">
                <toggleGroup>
                   <ToggleGroup fx:id="volOptions" />
                </toggleGroup></RadioButton>
-            <RadioButton layoutX="188.0" layoutY="52.0" mnemonicParsing="false" text="log Hours" toggleGroup="$volOptions" />
-            <RadioButton layoutX="405.0" layoutY="52.0" mnemonicParsing="false" text="Edit Profile" toggleGroup="$volOptions" />
-            <Button layoutX="447.0" layoutY="93.0" mnemonicParsing="false" text="Continue" />
+            <RadioButton fx:id="logWorkHours" layoutX="188.0" layoutY="52.0" mnemonicParsing="false" text="log Hours" toggleGroup="$volOptions" />
+            <RadioButton fx:id="editProfile" layoutX="405.0" layoutY="52.0" mnemonicParsing="false" text="Edit Profile" toggleGroup="$volOptions" />
+            <Button fx:id="selected" layoutX="447.0" layoutY="93.0" mnemonicParsing="false" text="Continue" />
             <Label layoutX="232.0" layoutY="14.0" text="What do you want to do:">
                <font>
                   <Font name="System Italic" size="20.0" />
                </font>
             </Label>
-            <Button fx:id="Logout" layoutX="528.0" layoutY="456.0" mnemonicParsing="false" text="Log-out" />
+            <Button fx:id="logOut" layoutX="528.0" layoutY="456.0" mnemonicParsing="false" text="Log-out" />
          </children>
       </AnchorPane>
    </center>
