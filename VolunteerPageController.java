@@ -2,6 +2,7 @@ package application;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 
@@ -23,8 +24,11 @@ public class VolunteerPageController {
 	private RadioButton editProfile;
 
 	@FXML
-	private RadioButton logWorkHours;
+	private RadioButton viewWorkHours;
 
+	@FXML
+	private RadioButton logWorkHours;
+	
 	@FXML
 	private ToggleGroup volOptions;
 
@@ -35,53 +39,47 @@ public class VolunteerPageController {
 	private Button selected;
 
 	@FXML
-	private Button submitTicket;
-
+	private Button submit;
+	
 	@FXML
-	private Button logOut;
+	private Button Logout;
 
-	public void initialize() {
-
+	public void initialize() throws Exception{
 		selected.setOnAction((event) -> {
+			
 			int i;
 			try {
-				FileInputStream fis = new FileInputStream("EMPID.dat");
-				ObjectInputStream ios = new ObjectInputStream(fis);
-				Volunteer e = (Volunteer) ios.readObject();
-				if (viewProfile.isSelected()) {
-					area.appendText(e.toString());
+				FileInputStream vfis = new FileInputStream("VOLID.dat");
+				ObjectInputStream ios = new ObjectInputStream(vfis);
+				Volunteer v = (Volunteer) ios.readObject();
+				if(viewProfile.isSelected()){
+					area.appendText(v.toString());
 					area.appendText("\n\n ------------- \n\n");
-				} else if (editProfile.isSelected()) {
-
+				}else if(editProfile.isSelected()) {
 					area.appendText("\n\n ------------- \n\n");
-				} else if (logWorkHours.isSelected()) {
-					Stage thirdStage = new Stage();
-					thirdStage.setTitle("Aurora Food Pantry Working Hours Page");
-					BorderPane root;
-					try {
-						root = (BorderPane) FXMLLoader.load(getClass().getResource("WorkHourLogger.fxml"));
-						Scene scene = new Scene(root, 500, 500);
-						scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-						thirdStage.setScene(scene);
-						thirdStage.show();
-
-					} catch (IOException ie) {
-						// TODO Auto-generated catch block
-						ie.printStackTrace();
-
-					}
-				} else {
+				}else if(viewWorkHours.isSelected()) {
+					String hours = "Working Hours:" + v.getWorkinHours();
+					area.appendText(hours);
+					area.appendText("\n\n ------------- \n\n");
+				}else if(logWorkHours.isSelected()) {
+					
+				}else {
 					System.out.println("This is not working");
 				}
-
-			} catch (IOException | ClassNotFoundException e1) {
+			} catch (FileNotFoundException e) {
 				// TODO Auto-generated catch block
-				e1.printStackTrace();
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 		});
-
-		logOut.setOnAction((event) -> {
-			Stage thirdStage = (Stage) logOut.getScene().getWindow();
+		
+		Logout.setOnAction((event) -> {
+			Stage thirdStage = (Stage) Logout.getScene().getWindow();
 			thirdStage.setTitle("Aurora Food Pantry Home Page");
 			BorderPane root;
 			try {
@@ -94,12 +92,15 @@ public class VolunteerPageController {
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+				
 
 			}
-			File f = new File("EMPID.dat");
-			System.out.println(f.delete());
-		});
+			
+			
+			/*File fi = new File("VOLID.dat");
+			System.out.println(fi.delete());*/
 
+		});
 	}
 
 }

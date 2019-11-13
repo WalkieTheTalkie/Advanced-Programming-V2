@@ -115,6 +115,12 @@ public class Volunteer extends Person implements Serializable  {
 				+ Phone + ", Gender=" + Gender + ", Address=" + Address + ", BirthDate=" + BirthDate
 				+ ", EmergencyContact=" + EmergencyContact + "]";
 	}
+
+	public String getWorkinHours() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 	
 

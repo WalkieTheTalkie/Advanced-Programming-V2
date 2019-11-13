@@ -1,7 +1,6 @@
 package application;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -13,11 +12,6 @@ public class VolunteerTable {
 	private final String SELECT_QUERY = "SELECT volunID, hours, courtOrdered, username, password, firstName,"
 			+ " middleInitial, lastName, email, phone, gender, address, birthDate,"
 			+ " emergencyContact FROM csc3610_Group3_finalProject.volunteers";
-	
-	private String update_query = "UPDATE csc3610_Group3_finalProject.volunteers SET"
-			+ " hours = ?, courtOrdered = ?, username = ?, password = ?, firstName = ?, middleInitial = ?,"
-			+ " lastName = ?, email = ?, phone = ?, gender = ?, address = ?,"
-			+ " birthDate = ?, emergencyContact = ? WHERE volunID = ?;";
 	
 	VolunteerTable(){
 		setVolunteers();
@@ -64,30 +58,5 @@ public class VolunteerTable {
 	public void setConnection() {
 		DBVolunteer volun = new DBVolunteer();
 		this.connection = volun.getConnection();
-	}
-	
-	public void updateVolunteer(Volunteer volun) {
-		try {
-			PreparedStatement prepared = connection.prepareStatement(update_query);
-			prepared.setInt(1, volun.getHoursVolunteered());
-			prepared.setBoolean(2, volun.getCourtOrdered());
-			prepared.setString(3, volun.getUserName());
-			prepared.setString(4, volun.getPassword());
-			prepared.setString(5, volun.getFirstName());
-			prepared.setString(6, volun.getMiddleInitial());
-			prepared.setString(7, volun.getLastName());
-			prepared.setString(8, volun.getEmail());
-			prepared.setString(9, volun.getPhone());
-			prepared.setString(10, volun.getGender());
-			prepared.setString(11, volun.getAddress());
-			prepared.setString(12, volun.getBirthDate());
-			prepared.setString(13, volun.getEmergencyContact());
-			prepared.setInt(14, volun.getVolunteerID());
-			
-			prepared.execute();
-		} catch (SQLException ex) {
-			ex.printStackTrace();
-		}
-		
 	}
 }
