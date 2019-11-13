@@ -49,10 +49,10 @@
                   <Font name="Bell MT Bold" size="17.0" />
                </font>
             </Text>
-            <Button layoutX="456.0" layoutY="514.0" mnemonicParsing="false" text="Log out" />
-            <Button layoutX="331.0" layoutY="514.0" mnemonicParsing="false" text="View Profile" />
-            <Button layoutX="206.0" layoutY="514.0" mnemonicParsing="false" text="Edit Profiile" />
-            <Button layoutX="94.0" layoutY="514.0" mnemonicParsing="false" text="log Hours" />
+            <Button fx:id="LogOut" layoutX="456.0" layoutY="514.0" mnemonicParsing="false" text="Log out" />
+            <Button fx:id="viewProfile" layoutX="331.0" layoutY="514.0" mnemonicParsing="false" text="View Profile" />
+            <Button fx:id="EditProfile" layoutX="206.0" layoutY="514.0" mnemonicParsing="false" text="Edit Profiile" />
+            <Button fx:id="logHours" layoutX="94.0" layoutY="514.0" mnemonicParsing="false" text="log Hours" />
          </children>
       </AnchorPane>
    </center>
