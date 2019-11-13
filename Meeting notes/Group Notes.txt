@@ -1,0 +1,23 @@
+met up with group on 10/27
+
+-Goal for the week: get a sample/working gui
+
+-Coustomer class will be deleted
+
+-Angel new goal- work on home page gui
+
+-Keep track of volunteer hours 
+
+-Get rid of inventory sections, replace with Volunteer hours
+
+-Split into two different droups: Ben & Angel work on gui. Rachel and Luke work on Database
+
+-Data in the database will focus primaraly on having information about people such as name (first and last), DOB,
+ID, Hours worked or volunteered, location the are from (mainly for volunteers, can be included for workers if needed),
+ETC. (looking for three different tables)
+
+-So far GUI will work on phone, but plane is to hopefully get it with working on phones as well. We can finish early
+to start testing for both mobile and PC.
+
+-
+

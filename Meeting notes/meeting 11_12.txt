@@ -1,0 +1,14 @@
+Group meeting for 11/12/2019
+
+Rachel- Has continued to work on her end of the database. Has fully finished adding elements to the admin section.
+Will continue to focus on volunteer and employee. plans to finish before thanksgiving
+
+Ben and Angel - Have continued to work on GUI and Plan to meet up on 11/14/2019 to continue working on the GUI together
+Create a new fxml with that is connected to the admin that has edditing capabilities that allows admin to eddit everything
+in the database except id's
+
+Luke - Will start on all the documentation
+
+The plan is to finish everythin before thanksgiving so that we can make the finishing touches the a week or two before
+it is due
+

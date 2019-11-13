@@ -1,0 +1,15 @@
+Notes from 110/30/2019 meeting with group
+
+Give new employee an idea with through the use of a random number generator for both employees and volunteer but
+seperate them through the size of the id(one might have more group might have more digits than the other). It cant
+have repeats
+
+
+One admin log-in, and this admin can then later choose to add other admin into the database
+
+for presentation on thursada the 31st, Ben will take care of the home and new user section, Rachel will take care
+of the admin, Luke will take care of Employee, Angel will take care of Volunteer.
+
+Data that will be stored in the database will have user specific restrictions that can view certain amounts of information
+-luke will look into this further
+
