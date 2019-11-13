@@ -62,6 +62,7 @@ public class Admin_Controller {
 		Admin a = (Admin) ios.readObject();
 		
 		viewProfile.setOnAction((event) -> {
+			CurrentProfile.clear();
 			CurrentProfile.appendText(a.toString());
 			CurrentProfile.appendText("\n\n ------------- \n\n");
 		});
