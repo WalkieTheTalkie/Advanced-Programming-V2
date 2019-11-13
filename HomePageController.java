@@ -155,7 +155,7 @@ public class HomePageController {
 					}
 					try {
 						thirdStage.setTitle("Aurora Food Pantry Employee Page");
-						AnchorPane root = FXMLLoader.load(getClass().getResource("Employee_Scene.fxml"));
+						BorderPane root = (BorderPane) FXMLLoader.load(getClass().getResource("Employee_Scene.fxml"));
 						Scene scene = new Scene(root, 700, 700);
 						scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 						thirdStage.setScene(scene);
