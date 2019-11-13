@@ -1,7 +1,9 @@
 package application;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -53,7 +55,17 @@ public class Admin_Controller {
 	private Button logHours;
 	
 	@FXML
-	public void initialize() {
+	public void initialize() throws ClassNotFoundException, IOException {
+		
+		FileInputStream fis = new FileInputStream("EMPID.dat");
+		ObjectInputStream ios = new ObjectInputStream(fis);
+		Admin a = (Admin) ios.readObject();
+		
+		viewProfile.setOnAction((event) -> {
+			CurrentProfile.appendText(a.toString());
+			CurrentProfile.appendText("\n\n ------------- \n\n");
+		});
+		
 		LogOut.setOnAction((event) -> {
 			Stage thirdStage = (Stage) LogOut.getScene().getWindow();
 			thirdStage.setTitle("Aurora Food Pantry Home Page");

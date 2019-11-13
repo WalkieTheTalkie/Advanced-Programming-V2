@@ -163,9 +163,9 @@ public class Person implements Serializable{
 	 */
 	@Override
 	public String toString() {
-		return "Person [FirstName=" + FirstName + ", MiddleInitial=" + MiddleInitial + ", LastName=" + LastName
-				+ ", Email=" + Email + ", Phone=" + Phone + ", Gender=" + Gender + ", Address=" + Address
-				+ ", BirthDate=" + BirthDate + ", EmergencyContact=" + EmergencyContact + "]";
+		return "\nFirstName=" + FirstName + "\nMiddleInitial=" + MiddleInitial + "\nLastName=" + LastName
+				+ "\nEmail: " + Email + "\nPhone: " + Phone + "\nGender: " + Gender + "\nAddress: " + Address
+				+ "\nBirthDate: " + BirthDate + "\nEmergencyContact: " + EmergencyContact;
 	}
 	
 	

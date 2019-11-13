@@ -42,4 +42,17 @@ public class Admin extends Person{
 	public int getId() {
 		return id;
 	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "\nUsername: " + username + "\npassword: " + password + "\nid: " + id + "\nFirstName: " + FirstName
+				+ "\nMiddleInitial: " + MiddleInitial + "\nLastName: " + LastName + "\nEmail=" + Email + "\nPhone: "
+				+ Phone + "\nGender: " + Gender + "\nAddress: " + Address + "\nBirthDate: " + BirthDate
+				+ "\nEmergencyContact: " + EmergencyContact;
+	}
+	
+	
 }
