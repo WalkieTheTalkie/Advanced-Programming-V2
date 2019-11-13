@@ -9,14 +9,16 @@ public class Admin extends Person{
 		
 	}
 	
-	Admin(String user, String pass){
+	Admin(int id, String user, String pass){
+		this.id = id;
 		this.username = user;
 		this.password = pass;
 	}
 	
-	Admin(String user, String pass, String fname, String middle, String lname, String email, String phone, String gender,
+	Admin(int id, String user, String pass, String fname, String middle, String lname, String email, String phone, String gender,
 			String address, String birth, String contact){
 		super(fname, middle, lname, email, phone, gender, address, birth, contact);
+		this.id = id;
 		this.username = user;
 		this.password = pass;
 	}
@@ -40,5 +42,4 @@ public class Admin extends Person{
 	public int getId() {
 		return id;
 	}
-	
 }

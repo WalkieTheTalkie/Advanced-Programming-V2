@@ -1,6 +1,7 @@
 package application;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -12,6 +13,11 @@ public class EmployeeTable {
 	private final String SELECT_QUERY = "SELECT empID, workHours, username, password, firstName,"
 			+ " middleInitial, lastName, email, phone, gender, address, birthDate,"
 			+ " emergencyContact FROM csc3610_Group3_finalProject.employees";
+	
+	private String update_query = "UPDATE csc3610_Group3_finalProject.employees SET"
+			+ " workHours = ?, username = ?, password = ?, firstName = ?, middleInitial = ?,"
+			+ " lastName = ?, email = ?, phone = ?, gender = ?, address = ?,"
+			+ " birthDate = ?, emergencyContact = ? WHERE empID = ?;";
 	
 	EmployeeTable(){
 		setEmployees();
@@ -60,5 +66,29 @@ public class EmployeeTable {
 		DBEmployee emp = new DBEmployee();
 		Connection connect = emp.getConnection();
 		this.connection = connect;
+	}
+	
+	public void updateEmployee(EmployeeClass emp) {
+		try {
+			PreparedStatement prepared = connection.prepareStatement(update_query);
+			prepared.setInt(1, emp.getWorkinHours());
+			prepared.setString(2, emp.getEmployeeUser());
+			prepared.setString(3, emp.getEmployeePass());
+			prepared.setString(4, emp.getFirstName());
+			prepared.setString(5, emp.getMiddleInitial());
+			prepared.setString(6, emp.getLastName());
+			prepared.setString(7, emp.getEmail());
+			prepared.setString(8, emp.getPhone());
+			prepared.setString(9, emp.getGender());
+			prepared.setString(10, emp.getAddress());
+			prepared.setString(11, emp.getBirthDate());
+			prepared.setString(12, emp.getEmergencyContact());
+			prepared.setInt(13, emp.getEmployeeID());
+			
+			prepared.execute();
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		}
+		
 	}
 }

@@ -1,6 +1,7 @@
 package application;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -12,6 +13,11 @@ public class AdminTable {
 	private final String SELECT_QUERY = "SELECT id, username, password, firstName,"
 			+ " middleInitial, lastName, email, phone, gender, address, birthDate,"
 			+ " emergencyContact FROM csc3610_Group3_finalProject.admin";
+	
+	private String update_query = "UPDATE csc3610_Group3_finalProject.admin SET"
+			+ " username = ?, password = ?, firstName = ?, middleInitial = ?,"
+			+ " lastName = ?, email = ?, phone = ?, gender = ?, address = ?,"
+			+ " birthDate = ?, emergencyContact = ? WHERE id = ?;";
 	
 	AdminTable(){
 		setAdmin();
@@ -57,6 +63,29 @@ public class AdminTable {
 	public void setConnection() {
 		DBAdmin ad = new DBAdmin();
 		this.connection = ad.getConnection();
+	}
+	
+	public void updateAdmin(Admin ad) {
+		try {
+			PreparedStatement prepared = connection.prepareStatement(update_query);
+			prepared.setString(1, ad.getUsername());
+			prepared.setString(2, ad.getPassword());
+			prepared.setString(3, ad.getFirstName());
+			prepared.setString(4, ad.getMiddleInitial());
+			prepared.setString(5, ad.getLastName());
+			prepared.setString(6, ad.getEmail());
+			prepared.setString(7, ad.getPhone());
+			prepared.setString(8, ad.getGender());
+			prepared.setString(9, ad.getAddress());
+			prepared.setString(10, ad.getBirthDate());
+			prepared.setString(11, ad.getEmergencyContact());
+			prepared.setInt(12, ad.getId());
+			
+			prepared.execute();
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		}
+		
 	}
 	
 }
