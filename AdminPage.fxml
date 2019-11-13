@@ -32,7 +32,7 @@
                </toggleGroup>
             </RadioButton>
             <RadioButton fx:id="Volunteer" layoutX="419.0" layoutY="64.0" mnemonicParsing="false" text="Volunteer" toggleGroup="$database" />
-            <TextArea fx:id="typeHere" layoutX="120.0" layoutY="87.0" prefHeight="186.0" prefWidth="404.0" promptText="This text area will display all people and personal info  based on whic database has been chosen above." />
+            <TextArea fx:id="Database" layoutX="119.0" layoutY="94.0" prefHeight="186.0" prefWidth="404.0" promptText="This text area will display all people and personal info  based on whic database has been chosen above." />
             <RadioButton fx:id="Admin" layoutX="143.0" layoutY="64.0" mnemonicParsing="false" text="Admin" toggleGroup="$database" />
             <TextField fx:id="searchField" layoutX="120.0" layoutY="324.0" prefHeight="33.0" prefWidth="198.0" promptText="Enter last name:">
                <font>
@@ -49,10 +49,11 @@
                   <Font name="Bell MT Bold" size="17.0" />
                </font>
             </Text>
-            <Button fx:id="LogOut" layoutX="456.0" layoutY="514.0" mnemonicParsing="false" text="Log out" />
-            <Button fx:id="viewProfile" layoutX="331.0" layoutY="514.0" mnemonicParsing="false" text="View Profile" />
-            <Button fx:id="EditProfile" layoutX="206.0" layoutY="514.0" mnemonicParsing="false" text="Edit Profiile" />
-            <Button fx:id="logHours" layoutX="94.0" layoutY="514.0" mnemonicParsing="false" text="log Hours" />
+            <Button fx:id="LogOut" layoutX="456.0" layoutY="548.0" mnemonicParsing="false" text="Log out" />
+            <Button fx:id="viewProfile" layoutX="339.0" layoutY="548.0" mnemonicParsing="false" text="View Profile" />
+            <Button fx:id="EditProfile" layoutX="225.0" layoutY="548.0" mnemonicParsing="false" text="Edit Profiile" />
+            <Button fx:id="logHours" layoutX="120.0" layoutY="548.0" mnemonicParsing="false" text="log Hours" />
+            <TextArea fx:id="CurrentProfile" layoutX="118.0" layoutY="369.0" prefHeight="148.0" prefWidth="538.0" promptText="Current Profile Data will be displayed here:" />
          </children>
       </AnchorPane>
    </center>

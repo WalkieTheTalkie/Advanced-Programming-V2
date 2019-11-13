@@ -20,7 +20,10 @@ public class Admin_Controller {
 	private ToggleGroup database;
 	
 	@FXML
-	private TextArea typeHere;
+	private TextArea Database;
+	
+	@FXML
+	private TextArea CurrentProfile;
 	
 	@FXML
 	private RadioButton Employee;
