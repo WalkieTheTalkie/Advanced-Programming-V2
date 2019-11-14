@@ -53,6 +53,21 @@ public class VolunteerPageController {
 					area.appendText(v.toString());
 					area.appendText("\n\n ------------- \n\n");
 				}else if(editProfile.isSelected()) {
+					Stage thirdStage = (Stage) editProfile.getScene().getWindow();
+					thirdStage.setTitle("Aurora Food Volunteer Editor Page");
+					BorderPane root;
+					try {
+						root = (BorderPane) FXMLLoader.load(getClass().getResource("VolunteerEditor.fxml"));
+						Scene scene = new Scene(root, 700, 700);
+						scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+						thirdStage.setScene(scene);
+						thirdStage.show();
+
+					} catch (IOException ie) {
+						// TODO Auto-generated catch block
+						ie.printStackTrace();
+
+					}
 					area.appendText("\n\n ------------- \n\n");
 				}else if(logWorkHours.isSelected()) {
 					Stage thirdStage = new Stage();
