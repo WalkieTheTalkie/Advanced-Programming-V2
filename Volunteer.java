@@ -109,18 +109,12 @@ public class Volunteer extends Person implements Serializable  {
 	 */
 	@Override
 	public String toString() {
-		return "Volunteer [VolunteerID=" + VolunteerID + ", HoursVolunteered=" + HoursVolunteered + ", CourtOrdered="
-				+ CourtOrdered + ", UserName=" + UserName + ", Password=" + Password + ", FirstName=" + FirstName
-				+ ", MiddleInitial=" + MiddleInitial + ", LastName=" + LastName + ", Email=" + Email + ", Phone="
-				+ Phone + ", Gender=" + Gender + ", Address=" + Address + ", BirthDate=" + BirthDate
-				+ ", EmergencyContact=" + EmergencyContact + "]";
+		return "VolunteerID: " + VolunteerID + "\nHoursVolunteered: " + HoursVolunteered + "\nCourtOrdered: "
+				+ CourtOrdered + "\nUserName: " + UserName + "\nPassword: " + Password + "\nFirstName: " + FirstName
+				+ "\nMiddleInitial: " + MiddleInitial + "\nLastName: " + LastName + "\nEmail: " + Email + "\nPhone: "
+				+ Phone + "\nGender: " + Gender + "\nAddress=" + Address + "\nBirthDate:" + BirthDate
+				+ "\nEmergencyContact: " + EmergencyContact;
 	}
-
-	public String getWorkinHours() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	
 	
 
