@@ -60,7 +60,7 @@ public class HomePageController {
 			Stage secondStage = new Stage();
 			try {
 				secondStage.setTitle("Aurora Food Pantry New Volunteer Page");
-				AnchorPane root = FXMLLoader.load(getClass().getResource("New_Volunteer.fxml"));
+				BorderPane root = FXMLLoader.load(getClass().getResource("New_Volunteer.fxml"));
 				Scene scene = new Scene(root, 600, 600);
 				scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 				secondStage.setScene(scene);
@@ -107,7 +107,7 @@ public class HomePageController {
 					}
 					try {
 						thirdStage.setTitle("Aurora Food Pantry Volunteer Page");
-						BorderPane root = FXMLLoader.load(getClass().getResource("Volunteer_Scene.fxml"));
+						BorderPane root = (BorderPane) FXMLLoader.load(getClass().getResource("Volunteer_Scene.fxml"));
 						Scene scene = new Scene(root, 700, 700);
 						scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 						thirdStage.setScene(scene);

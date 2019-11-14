@@ -44,7 +44,7 @@ public class EmployeeController {
 
 	public void initialize() throws Exception {
 		selected.setOnAction((event) -> {
-			
+
 			int i;
 			try {
 				FileInputStream fis = new FileInputStream("EMPID.dat");
@@ -84,11 +84,8 @@ public class EmployeeController {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-			});
-			
-			
+		});
 
-			
 		logOut.setOnAction((event) -> {
 			Stage thirdStage = (Stage) logOut.getScene().getWindow();
 			thirdStage.setTitle("Aurora Food Pantry Home Page");
@@ -103,14 +100,9 @@ public class EmployeeController {
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-				
-
 			}
-			
-			
 			File f = new File("EMPID.dat");
 			System.out.println(f.delete());
-
 		});
 	}
 }
