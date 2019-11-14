@@ -6,10 +6,14 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
 
 public class NewUser_Controller {
 	
@@ -61,6 +65,9 @@ public class NewUser_Controller {
 	@FXML
 	private Button AddUser;
 
+	@FXML
+	private Button Cancel;
+	
 	public void initialize() {
 		AddUser.setOnAction((event) -> {
 			EmployeeClass e = new EmployeeClass();
@@ -84,7 +91,7 @@ public class NewUser_Controller {
 				
 				System.out.println(a.toString());
 				
-				//DBAdmin adm = new DBAdmin(a);
+				DBAdmin adm = new DBAdmin(a);
 				
 			}else if (Employee.isSelected()) {
 				sent = 2;
@@ -144,6 +151,20 @@ public class NewUser_Controller {
 				//e1.printStackTrace();
 			//}
 
+		});
+		
+		Cancel.setOnAction((event) -> {
+			try {
+				Stage thirdStage = (Stage) Cancel.getScene().getWindow();
+				thirdStage.setTitle("Aurora Food Pantry Admin Page");
+				BorderPane root = (BorderPane) FXMLLoader.load(getClass().getResource("AdminPage.fxml"));
+				Scene scene = new Scene(root, 1200, 700);
+				scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+				thirdStage.setScene(scene);
+				thirdStage.show();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		});
 		
 	}

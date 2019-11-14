@@ -64,6 +64,9 @@ public class Admin_Controller {
 	private Button EditProfile;
 	
 	@FXML
+	private Button AddProfile;
+	
+	@FXML
 	private Button logHours;
 	
 	@FXML
@@ -100,7 +103,6 @@ public class Admin_Controller {
 		
 		Employee.setOnAction((event) ->{
 			
-		
 			TableColumn ID = new TableColumn("ID");
 			TableColumn WorkH = new TableColumn("Hours");
 			TableColumn User = new TableColumn("Username");
@@ -153,7 +155,7 @@ public class Admin_Controller {
 			
 		});
 		
-		EditProfile.setOnAction((event) -> {
+		AddProfile.setOnAction((event) -> {
 			Stage thirdStage = (Stage) LogOut.getScene().getWindow();
 			thirdStage.setTitle("Aurora Food Pantry Home Page");
 			BorderPane root;
