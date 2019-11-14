@@ -24,9 +24,6 @@ public class VolunteerPageController {
 	private RadioButton editProfile;
 
 	@FXML
-	private RadioButton viewWorkHours;
-
-	@FXML
 	private RadioButton logWorkHours;
 	
 	@FXML
@@ -37,9 +34,9 @@ public class VolunteerPageController {
 
 	@FXML
 	private Button selected;
-
+	
 	@FXML
-	private Button submit;
+	private Button requestTicket;
 	
 	@FXML
 	private Button Logout;
@@ -56,10 +53,6 @@ public class VolunteerPageController {
 					area.appendText(v.toString());
 					area.appendText("\n\n ------------- \n\n");
 				}else if(editProfile.isSelected()) {
-					area.appendText("\n\n ------------- \n\n");
-				}else if(viewWorkHours.isSelected()) {
-					String hours = "Working Hours:" + v.getHoursVolunteered();
-					area.appendText(hours);
 					area.appendText("\n\n ------------- \n\n");
 				}else if(logWorkHours.isSelected()) {
 					

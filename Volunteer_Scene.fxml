@@ -15,7 +15,7 @@
       <AnchorPane prefHeight="664.0" prefWidth="672.0" style="-fx-background-color: aaeeff;" BorderPane.alignment="CENTER">
          <children>
             <TextArea fx:id="area" layoutX="142.0" layoutY="148.0" prefHeight="273.0" prefWidth="386.0" />
-            <Button fx:id="submitTicket" layoutX="283.0" layoutY="456.0" mnemonicParsing="false" text="Request Ticket" />
+            <Button fx:id="requestTicket" layoutX="283.0" layoutY="456.0" mnemonicParsing="false" text="Request Ticket" />
             <RadioButton fx:id="viewProfile" layoutX="290.0" layoutY="52.0" mnemonicParsing="false" text="View Profile">
                <toggleGroup>
                   <ToggleGroup fx:id="volOptions" />
@@ -28,7 +28,7 @@
                   <Font name="System Italic" size="20.0" />
                </font>
             </Label>
-            <Button fx:id="logOut" layoutX="528.0" layoutY="456.0" mnemonicParsing="false" text="Log-out" />
+            <Button fx:id="Logout" layoutX="528.0" layoutY="456.0" mnemonicParsing="false" text="Log-out" />
          </children>
       </AnchorPane>
    </center>
