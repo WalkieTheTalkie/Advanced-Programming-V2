@@ -58,7 +58,7 @@ public class VolunteerPageController {
 				}else if(editProfile.isSelected()) {
 					area.appendText("\n\n ------------- \n\n");
 				}else if(viewWorkHours.isSelected()) {
-					String hours = "Working Hours:" + v.getWorkinHours();
+					String hours = "Working Hours:" + v.getHoursVolunteered();
 					area.appendText(hours);
 					area.appendText("\n\n ------------- \n\n");
 				}else if(logWorkHours.isSelected()) {
