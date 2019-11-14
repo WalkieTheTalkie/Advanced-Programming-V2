@@ -46,7 +46,7 @@ public class VolunteerPageController {
 			
 			int i;
 			try {
-				FileInputStream vfis = new FileInputStream("VOLID.dat");
+				FileInputStream vfis = new FileInputStream("EMPID.dat");
 				ObjectInputStream ios = new ObjectInputStream(vfis);
 				Volunteer v = (Volunteer) ios.readObject();
 				if(viewProfile.isSelected()){
@@ -55,7 +55,21 @@ public class VolunteerPageController {
 				}else if(editProfile.isSelected()) {
 					area.appendText("\n\n ------------- \n\n");
 				}else if(logWorkHours.isSelected()) {
-					
+					Stage thirdStage = new Stage();
+					thirdStage.setTitle("Aurora Food Pantry Working Hours Page");
+					BorderPane root;
+					try {
+						root = (BorderPane) FXMLLoader.load(getClass().getResource("WorkHourLogger.fxml"));
+						Scene scene = new Scene(root, 500, 500);
+						scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+						thirdStage.setScene(scene);
+						thirdStage.show();
+
+					} catch (IOException ie) {
+						// TODO Auto-generated catch block
+						ie.printStackTrace();
+
+					}
 				}else {
 					System.out.println("This is not working");
 				}
