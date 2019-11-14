@@ -54,5 +54,11 @@ public class Admin extends Person{
 				+ "\nEmergencyContact: " + EmergencyContact;
 	}
 	
+	public String toString2() {
+		return  "\n" + username + " " +  password + " " + id + " " + FirstName
+				+ " " + MiddleInitial + " " + LastName + " " + Email + " "
+				+ Phone + " " + Gender + " " + Address + " " + BirthDate
+				+ " " + EmergencyContact;
+	}
 	
 }

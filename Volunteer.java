@@ -116,6 +116,14 @@ public class Volunteer extends Person implements Serializable  {
 				+ "\nEmergencyContact: " + EmergencyContact;
 	}
 	
+	public String toString2() {
+		return "\n" + VolunteerID + " " + HoursVolunteered + " "
+				+ CourtOrdered + " " + UserName + " " + Password + " " + FirstName
+				+ " " + MiddleInitial + " " + LastName + " " + Email + " "
+				+ Phone + " " + Gender + " " + Address + " " + BirthDate
+				+ " " + EmergencyContact;
+	}
+	
 	
 
 }

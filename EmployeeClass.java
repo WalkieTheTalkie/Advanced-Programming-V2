@@ -69,11 +69,11 @@ public class EmployeeClass extends Person implements Serializable {
 	public String toString() {
 		return "\nID: " + EmployeeID + "\nName: " + FirstName + " " + MiddleInitial + " " + LastName + "\nEmail: " + Email + "\nPhone Number: " +
 				Phone + "\nGender: " + Gender + "\nAddress: " + Address + "\nDate of Birth: " + BirthDate + "\nEmergency Contact: " + EmergencyContact + "";
-		//return "EmployeeClass [EmployeeID=" + EmployeeID + ", workinHours=" + workinHours + ", employeeUser="
-		//		+ employeeUser + ", employeePass=" + employeePass + ", FirstName=" + FirstName + ", MiddleInitial="
-		//		+ MiddleInitial + ", LastName=" + LastName + ", Email=" + Email + ", Phone=" + Phone + ", Gender="
-		//		+ Gender + ", Address=" + Address + ", BirthDate=" + BirthDate + ", EmergencyContact="
-		//		+ EmergencyContact + "]";
+	}
+	
+	public String toString2() {
+		return "\n" + EmployeeID + " " + FirstName + " " + MiddleInitial + " " + LastName + " " + Email + " " +
+				Phone + " " + Gender + " " + Address + " " + BirthDate + " " + EmergencyContact;
 	}
 	
 }
