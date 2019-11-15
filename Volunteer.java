@@ -109,11 +109,11 @@ public class Volunteer extends Person implements Serializable  {
 	 */
 	@Override
 	public String toString() {
-		return "VolunteerID: " + VolunteerID + "\nHoursVolunteered: " + HoursVolunteered + "\nCourtOrdered: "
-				+ CourtOrdered + "\nUserName: " + UserName + "\nPassword: " + Password + "\nFirstName: " + FirstName
-				+ "\nMiddleInitial: " + MiddleInitial + "\nLastName: " + LastName + "\nEmail: " + Email + "\nPhone: "
-				+ Phone + "\nGender: " + Gender + "\nAddress=" + Address + "\nBirthDate:" + BirthDate
-				+ "\nEmergencyContact: " + EmergencyContact;
+		return "Volunteer ID: " + VolunteerID + "\nHours Volunteered: " + HoursVolunteered + "\nCourt Ordered?: "
+				+ CourtOrdered + "\nUsername: " + UserName + "\nPassword: " + Password + "\nFirst Name: " + FirstName
+				+ "\nMiddle Initial: " + MiddleInitial + "\nLast Name: " + LastName + "\nEmail: " + Email + "\nPhone: "
+				+ Phone + "\nGender: " + Gender + "\nAddress: " + Address + "\nBirth Date:" + BirthDate
+				+ "\nEmergency Contact: " + EmergencyContact;
 	}
 	
 	public String toString2() {
@@ -123,7 +123,5 @@ public class Volunteer extends Person implements Serializable  {
 				+ Phone + " " + Gender + " " + Address + " " + BirthDate
 				+ " " + EmergencyContact;
 	}
-	
-	
 
 }

@@ -158,7 +158,7 @@ public class NewUser_Controller {
 				Stage thirdStage = (Stage) Cancel.getScene().getWindow();
 				thirdStage.setTitle("Aurora Food Pantry Admin Page");
 				BorderPane root = (BorderPane) FXMLLoader.load(getClass().getResource("AdminPage.fxml"));
-				Scene scene = new Scene(root, 1200, 700);
+				Scene scene = new Scene(root, 700, 700);
 				scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 				thirdStage.setScene(scene);
 				thirdStage.show();
