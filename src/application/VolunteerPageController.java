@@ -50,6 +50,7 @@ public class VolunteerPageController {
 				ObjectInputStream ios = new ObjectInputStream(vfis);
 				Volunteer v = (Volunteer) ios.readObject();
 				if(viewProfile.isSelected()){
+					area.clear();
 					area.appendText(v.toString());
 					area.appendText("\n\n ------------- \n\n");
 				}else if(editProfile.isSelected()) {

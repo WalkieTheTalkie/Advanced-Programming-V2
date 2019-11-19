@@ -23,7 +23,7 @@
             <Button fx:id="submit" layoutX="356.0" layoutY="177.0" mnemonicParsing="false" text="Submit" />
             <TextField fx:id="text" layoutX="127.0" layoutY="177.0" promptText="Enter hours:" />
             <Button fx:id="Cancel" layoutX="356.0" layoutY="234.0" mnemonicParsing="false" text="Cancel" />
-            <RadioButton fx:id="Add" layoutX="99.0" layoutY="91.0" mnemonicParsing="false" text="Add">
+            <RadioButton fx:id="Add" layoutX="99.0" layoutY="91.0" mnemonicParsing="false" selected="true" text="Add">
                <toggleGroup>
                   <ToggleGroup fx:id="Choices" />
                </toggleGroup></RadioButton>
