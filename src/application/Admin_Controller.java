@@ -60,16 +60,34 @@ public class Admin_Controller {
 	private Button LogOut;
 	
 	@FXML
-	private Button viewProfile;
+	private Button viewMyProfile;
 	
 	@FXML
-	private Button EditProfile;
+	private Button EditMyProfile;
 	
 	@FXML
 	private Button AddProfile;
 	
 	@FXML
-	private Button logHours;
+	private Button EditProfile;
+	
+	@FXML
+	private Button RemoveProfile;
+	
+	@FXML
+	private Button FirstNameButton;
+	
+	@FXML
+	private Button LastNameButton;
+	
+	@FXML
+	private Button MostHoursButton;
+	
+	@FXML
+	private Button LeastHoursButton;
+	
+	@FXML
+	private Button IDButton;
 	
 	@FXML
 	public void initialize() throws ClassNotFoundException, IOException {
@@ -80,12 +98,12 @@ public class Admin_Controller {
 		Database.setColumnResizePolicy(TableView.UNCONSTRAINED_RESIZE_POLICY);
 		Database.setPlaceholder(new Label("^ Select a Radio Button Above ^"));
 		
-		viewProfile.setOnAction((event) -> {
+		viewMyProfile.setOnAction((event) -> {
 			CurrentProfile.clear();
 			CurrentProfile.appendText(a.toString());
 			CurrentProfile.appendText("\n\n ------------- \n\n");
 		});
-		EditProfile.setOnAction((event) ->{
+		EditMyProfile.setOnAction((event) ->{
 			Stage thirdStage = (Stage) EditProfile.getScene().getWindow();
 			thirdStage.setTitle("Aurora Food Admin Editor Page");
 			BorderPane root;
