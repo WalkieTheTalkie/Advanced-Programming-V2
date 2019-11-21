@@ -51,6 +51,7 @@ public class EmployeeController {
 				ObjectInputStream ios = new ObjectInputStream(fis);
 				EmployeeClass e = (EmployeeClass) ios.readObject();
 				if (viewProfile.isSelected()) {
+					area.clear();
 					area.appendText(e.toString());
 					area.appendText("\n\n ------------- \n\n");
 				} else if (editProfile.isSelected()) {
@@ -72,6 +73,7 @@ public class EmployeeController {
 					area.appendText("\n\n ------------- \n\n");
 				} else if (viewWorkHours.isSelected()) {
 					String hours = "Working Hours:" + e.getWorkinHours();
+					area.clear();
 					area.appendText(hours);
 					area.appendText("\n\n ------------- \n\n");
 				} else if (logWorkHours.isSelected()) {
