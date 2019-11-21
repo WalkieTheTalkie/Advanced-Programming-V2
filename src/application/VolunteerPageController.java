@@ -36,9 +36,6 @@ public class VolunteerPageController {
 	private Button selected;
 	
 	@FXML
-	private Button requestTicket;
-	
-	@FXML
 	private Button Logout;
 
 	public void initialize() throws Exception{
