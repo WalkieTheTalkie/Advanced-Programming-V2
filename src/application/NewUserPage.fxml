@@ -54,7 +54,7 @@
                   <ToggleGroup fx:id="options" />
                </toggleGroup>
             </RadioButton>
-            <RadioButton fx:id="Volunteer" layoutX="362.0" layoutY="33.0" mnemonicParsing="false" text="Volunteer" toggleGroup="$options">
+            <RadioButton fx:id="Volunteer" layoutX="362.0" layoutY="33.0" mnemonicParsing="false" selected="true" text="Volunteer" toggleGroup="$options">
                <font>
                   <Font size="14.0" />
                </font>
