@@ -19,6 +19,9 @@ public class AdminTable {
 			+ " lastName = ?, email = ?, phone = ?, gender = ?, address = ?,"
 			+ " birthDate = ?, emergencyContact = ? WHERE id = ?;";
 	
+	private String delete_query = "DELETE FROM csc3610_Group3_finalProject.admin"
+			+ " WHERE id = ?;";
+	
 	AdminTable(){
 		setAdmin();
 	}
@@ -86,6 +89,16 @@ public class AdminTable {
 			ex.printStackTrace();
 		}
 		
+	}
+	
+	public void delete(int num) {
+		try {
+			PreparedStatement prepared = connection.prepareStatement(delete_query);
+			prepared.setInt(1, num);
+			prepared.execute();
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		}
 	}
 	
 }

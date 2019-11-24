@@ -19,6 +19,9 @@ public class EmployeeTable {
 			+ " lastName = ?, email = ?, phone = ?, gender = ?, address = ?,"
 			+ " birthDate = ?, emergencyContact = ? WHERE empID = ?;";
 	
+	private String delete_query = "DELETE FROM csc3610_Group3_finalProject.employees"
+			+ " WHERE empID = ?;";
+	
 	EmployeeTable(){
 		setEmployees();
 	}
@@ -91,4 +94,15 @@ public class EmployeeTable {
 		}
 		
 	}
+	
+	public void delete(int num) {
+		try {
+			PreparedStatement prepared = connection.prepareStatement(delete_query);
+			prepared.setInt(1, num);
+			prepared.execute();
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		}
+	}
+	
 }

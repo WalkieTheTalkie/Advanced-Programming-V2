@@ -19,6 +19,9 @@ public class VolunteerTable {
 			+ " lastName = ?, email = ?, phone = ?, gender = ?, address = ?,"
 			+ " birthDate = ?, emergencyContact = ? WHERE volunID = ?;";
 	
+	private String delete_query = "DELETE FROM csc3610_Group3_finalProject.volunteers"
+			+ " WHERE volunID = ?;";
+	
 	VolunteerTable(){
 		setVolunteers();
 	}
@@ -89,5 +92,15 @@ public class VolunteerTable {
 			ex.printStackTrace();
 		}
 		
+	}
+	
+	public void delete(int num) {
+		try {
+			PreparedStatement prepared = connection.prepareStatement(delete_query);
+			prepared.setInt(1, num);
+			prepared.execute();
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		}
 	}
 }
