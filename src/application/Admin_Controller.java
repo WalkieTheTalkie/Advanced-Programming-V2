@@ -328,7 +328,7 @@ public class Admin_Controller {
 		
 		AddProfile.setOnAction((event) -> {
 			Stage thirdStage = (Stage) LogOut.getScene().getWindow();
-			thirdStage.setTitle("Aurora Food Pantry Home Page");
+			thirdStage.setTitle("Aurora Food Pantry Add User");
 			BorderPane root;
 				try {
 					root = (BorderPane) FXMLLoader.load(getClass().getResource("NewUserPage.fxml"));
@@ -341,9 +341,22 @@ public class Admin_Controller {
 					e.printStackTrace();
 				}
 				
-		});{
+		});
 			
-		}
+		RemoveProfile.setOnAction((event) -> {
+			Stage fourthStage = (Stage) RemoveProfile.getScene().getWindow();
+			fourthStage.setTitle("Aurora Food Pantry Delete User");
+			BorderPane root;
+			try {
+				root = (BorderPane) FXMLLoader.load(getClass().getResource("deleteUser.fxml"));
+				Scene scene = new Scene(root, 700, 700);
+				scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+				fourthStage.setScene(scene);
+				fourthStage.show();
+			} catch (IOException ex) {
+				ex.printStackTrace();
+			}
+		});
 	}
 	
 }
