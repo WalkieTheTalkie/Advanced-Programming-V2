@@ -1,9 +1,10 @@
 package application;
 
 import java.io.Serializable;
+import java.util.Comparator;
 
 @SuppressWarnings("serial")
-public class Volunteer extends Person implements Serializable  {
+public class Volunteer extends Person implements Serializable, Comparator  {
 	int VolunteerID;
 	int HoursVolunteered;
 	Boolean CourtOrdered;
@@ -122,6 +123,14 @@ public class Volunteer extends Person implements Serializable  {
 				+ " " + MiddleInitial + " " + LastName + " " + Email + " "
 				+ Phone + " " + Gender + " " + Address + " " + BirthDate
 				+ " " + EmergencyContact;
+	}
+	
+	
+	public int compare(Object o1, Object o2) {
+		Volunteer v1 = (Volunteer) o1;
+		Volunteer v2 = (Volunteer) o2;
+		
+		return v1.getLastName().compareToIgnoreCase(v2.getLastName());
 	}
 
 }

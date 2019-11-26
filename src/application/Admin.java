@@ -1,6 +1,8 @@
 package application;
 
-public class Admin extends Person{
+import java.util.Comparator;
+
+public class Admin extends Person implements Comparator{
 	private String username;
 	private String password;
 	private int id;
@@ -59,6 +61,14 @@ public class Admin extends Person{
 				+ " " + MiddleInitial + " " + LastName + " " + Email + " "
 				+ Phone + " " + Gender + " " + Address + " " + BirthDate
 				+ " " + EmergencyContact;
+	}
+
+	public int compare(Object arg0, Object arg1) {
+		// TODO Auto-generated method stub
+		Admin A1 = (Admin) arg0;
+		Admin A2 = (Admin) arg1;
+		
+		return A1.FirstName.compareToIgnoreCase(A2.FirstName);
 	}
 	
 }

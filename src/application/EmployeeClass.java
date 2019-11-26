@@ -1,9 +1,10 @@
 package application;
 
 import java.io.Serializable;
+import java.util.Comparator;
 
 @SuppressWarnings("serial")
-public class EmployeeClass extends Person implements Serializable {
+public class EmployeeClass extends Person implements Serializable, Comparator{
 	private int EmployeeID;
 	private int workinHours;
 	private String employeeUser;
@@ -74,6 +75,12 @@ public class EmployeeClass extends Person implements Serializable {
 	public String toString2() {
 		return "\n" + EmployeeID + " " + FirstName + " " + MiddleInitial + " " + LastName + " " + Email + " " +
 				Phone + " " + Gender + " " + Address + " " + BirthDate + " " + EmergencyContact;
+	}
+	@Override
+	public int compare(Object o1, Object o2) {
+		EmployeeClass E1 = (EmployeeClass) o1;
+		EmployeeClass E2 = (EmployeeClass) o2;
+		return E1.getLastName().compareToIgnoreCase(E2.getLastName());
 	}
 	
 }
