@@ -357,6 +357,101 @@ public class Admin_Controller {
 				ex.printStackTrace();
 			}
 		});
+		
+		LastNameButton.setOnAction((event) -> {
+			CurrentProfile.clear();
+			HashMap<Integer, Admin> HMA = AT.getAdmin();
+			Set<Integer> key = HMA.keySet();
+			Admin[] AR = new Admin[key.size()];
+			Iterator IT = key.iterator();
+			if (Admin1.isSelected()) {
+				for (int i = 0; i < key.size(); i++) {
+					AR[i] = HMA.get(IT.next());
+					System.out.println(AR[i]);
+				}
+				for (int i = 0; i < key.size(); i++) {
+					System.out.println(AR[i]);
+				}
+				System.out.println(AR.length);
+
+				Admin temp;
+				System.out.println("Strings in sorted order:");
+				for (int j = 0; j < AR.length; j++) {
+					for (int i = j + 1; i < AR.length; i++) {
+						// comparing adjacent strings
+						if (AR[i].compare(AR[j], AR[i]) > 0) {
+							temp = AR[j];
+							AR[j] = AR[i];
+							AR[i] = temp;
+						}
+					}
+				}
+
+				// System.out.println(Arrays.asList(AR).toString());
+				CurrentProfile.appendText(Arrays.asList(AR).toString());
+				// System.out.println((new Admin()).compare(AR[0], AR[1]));
+			} else if (Volunteer1.isSelected()) {
+				CurrentProfile.clear();
+				HashMap<Integer, Volunteer> HMV = VT.getVolunteers();
+				Set<Integer> keyV = HMV.keySet();
+				Volunteer[] ARV = new Volunteer[keyV.size()];
+				Iterator ITV = keyV.iterator();
+				for (int i = 0; i < keyV.size(); i++) {
+					ARV[i] = HMV.get(ITV.next());
+					System.out.println(ARV[i].getLastName());
+				}
+				System.out.println(ARV.length);
+
+				Volunteer temp;
+				System.out.println("Strings in sorted order:");
+				for (int j = 0; j < ARV.length; j++) {
+					for (int i = j + 1; i < ARV.length; i++) {
+						// comparing adjacent strings
+						if (ARV[i].compare(ARV[j], ARV[i]) > 0) {
+							temp = ARV[j];
+							ARV[j] = ARV[i];
+							ARV[i] = temp;
+						}
+					}
+				}
+				for (int i = 0; i < ARV.length; i++) {
+					System.out.println(ARV[i].getLastName());
+				}
+
+				CurrentProfile.appendText(Arrays.asList(ARV).toString());
+			} else {
+
+				CurrentProfile.clear();
+				HashMap<Integer, EmployeeClass> HME = EM.getEmployees();
+				Set<Integer> keyE = HME.keySet();
+				EmployeeClass[] ARE = new EmployeeClass[keyE.size()];
+				Iterator ITE = keyE.iterator();
+				for (int i = 0; i < keyE.size(); i++) {
+					ARE[i] = HME.get(ITE.next());
+					System.out.println(ARE[i].getLastName());
+				}
+				System.out.println(ARE.length);
+
+				EmployeeClass temp;
+				System.out.println("Strings in sorted order:");
+				for (int j = 0; j < ARE.length; j++) {
+					for (int i = j + 1; i < ARE.length; i++) {
+						// comparing adjacent strings
+						if (ARE[i].compare(ARE[j], ARE[i]) > 0) {
+							temp = ARE[j];
+							ARE[j] = ARE[i];
+							ARE[i] = temp;
+						}
+					}
+				}
+				for (int i = 0; i < ARE.length; i++) {
+					System.out.println(ARE[i].getLastName());
+				}
+				CurrentProfile.appendText(Arrays.asList(ARE).toString());
+			}
+		});
+		
+		
 	}
 	
 }
