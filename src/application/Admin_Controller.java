@@ -358,6 +358,10 @@ public class Admin_Controller {
 			}
 		});
 		
+		AdminTable AT = new AdminTable();
+		EmployeeTable EM = new EmployeeTable();
+		VolunteerTable VT = new VolunteerTable();
+
 		LastNameButton.setOnAction((event) -> {
 			CurrentProfile.clear();
 			HashMap<Integer, Admin> HMA = AT.getAdmin();
