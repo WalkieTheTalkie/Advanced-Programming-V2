@@ -8,35 +8,43 @@ import java.util.LinkedList;
 public class BinarySearchSortByID {
 	
 	//test run of binary search and id sort
-	//public static void main(String[] args) {
-	//	EmployeeClass emp = BinarySearchByID(2); // check if there
-	//	EmployeeClass emp2 = BinarySearchByID(3);
-	//	
-	//	System.out.print(emp.toString());
-	//	System.out.print(emp2.toString());
-	//	
-	//	if (emp2.getEmployeeUser() == null) {
-	//		System.out.print("\nEmployee does not exist");
-	//	}
-	//	
-	//	LinkedList<Volunteer> volun = VolunteersSortByID();
-	//	
-	//	for (Volunteer i : volun) {
-	//		System.out.print(i.toString());
-	//	}
-	//}
+	public static void main(String[] args) {
+		//EmployeeClass emp = BinarySearchByID(2); // check if there
+		//EmployeeClass emp2 = BinarySearchByID(3);
+		
+		//System.out.print(emp.toString());
+		//System.out.print(emp2.toString());
+		
+		//if (emp2.getEmployeeUser() == null) {
+		//	System.out.print("\nEmployee does not exist");
+		//}
+		
+		//Volunteer v = VBinarySearchByID(3);
+		//System.out.print(v);
+		
+		//LinkedList<Volunteer> volun = VolunteersSortByID();
+		
+		//for (Volunteer i : volun) {
+		//	System.out.print(i.toString());
+		//}
+	}
 
 	public static EmployeeClass EmpBinarySearchByID(int id){
 		HashMap<Integer, EmployeeClass> employees = new EmployeeTable().getEmployees();
+		ArrayList<EmployeeClass> emps = new ArrayList<>();
+		for(Integer i : employees.keySet()) {
+			emps.add(employees.get(i));
+		}
+		
 		try {
 			int low = 1;
-			int high = employees.size();
+			int high = emps.size();
 			int middle = (low + high - 1) / 2;
 			
 			do {
-				if (id == employees.get(middle).getEmployeeID()) {
-					return employees.get(middle);
-				} else if (id < employees.get(middle).getEmployeeID()) {
+				if (id == emps.get(middle).getEmployeeID()) {
+					return emps.get(middle);
+				} else if (id < emps.get(middle).getEmployeeID()) {
 					high = middle - 1;
 				} else {
 					low = middle + 1;
@@ -52,15 +60,20 @@ public class BinarySearchSortByID {
 	
 	public static Admin AdBinarySearchByID(int id){
 		HashMap<Integer, Admin> admin = new AdminTable().getAdmin();
+		ArrayList<Admin> ad = new ArrayList<>();
+		for(Integer i : admin.keySet()) {
+			ad.add(admin.get(i));
+		}
+		
 		try {
 			int low = 1;
-			int high = admin.size();
+			int high = ad.size();
 			int middle = (low + high - 1) / 2;
 			
 			do {
-				if (id == admin.get(middle).getId()) {
-					return admin.get(middle);
-				} else if (id < admin.get(middle).getId()) {
+				if (id == ad.get(middle).getId()) {
+					return ad.get(middle);
+				} else if (id < ad.get(middle).getId()) {
 					high = middle - 1;
 				} else {
 					low = middle + 1;
@@ -76,15 +89,20 @@ public class BinarySearchSortByID {
 	
 	public static Volunteer VBinarySearchByID(int id){
 		HashMap<Integer, Volunteer> volun = new VolunteerTable().getVolunteers();
+		ArrayList<Volunteer> v = new ArrayList<>();
+		for (Integer i : volun.keySet()) {
+			v.add(volun.get(i));
+		}
+		
 		try {
 			int low = 1;
-			int high = volun.size();
+			int high = v.size();
 			int middle = (low + high - 1) / 2;
 			
 			do {
-				if (id == volun.get(middle).getVolunteerID()) {
-					return volun.get(middle);
-				} else if (id < volun.get(middle).getVolunteerID()) {
+				if (id == v.get(middle).getVolunteerID()) {
+					return v.get(middle);
+				} else if (id < v.get(middle).getVolunteerID()) {
 					high = middle - 1;
 				} else {
 					low = middle + 1;
