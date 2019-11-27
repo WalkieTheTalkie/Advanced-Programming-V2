@@ -455,6 +455,70 @@ public class Admin_Controller {
 			}
 		});
 		
+		FirstNameButton.setOnAction((event) -> {
+			if (Volunteer1.isSelected()) {
+				CurrentProfile.clear();
+				HashMap<Integer, Volunteer> HMV = VT.getVolunteers();
+				Set<Integer> keyV = HMV.keySet();
+				Person[] ARV = new Volunteer[keyV.size()];
+				Iterator ITV = keyV.iterator();
+				for (int i = 0; i < keyV.size(); i++) {
+					ARV[i] = HMV.get(ITV.next());
+				}
+				
+				HeapStringFirstNameSort JB = new HeapStringFirstNameSort(ARV);
+				ARV = JB.HEAPSort();
+				
+				System.out.println();
+				System.out.println("Sorted :");
+				System.out.println();
+				
+				for (int i = 0; i < keyV.size(); i++) {
+					CurrentProfile.appendText((ARV[i].getFirstName() + ", "));
+				}
+
+			}else if (Admin1.isSelected()) {
+				CurrentProfile.clear();
+				HashMap<Integer, Admin> HMA = AT.getAdmin();
+				Set<Integer> keyA = HMA.keySet();
+				Person[] ARA = new Admin[keyA.size()];
+				Iterator ITA = keyA.iterator();
+				for (int i = 0; i < keyA.size(); i++) {
+					ARA[i] = HMA.get(ITA.next());
+				}
+				
+				HeapStringFirstNameSort JB = new HeapStringFirstNameSort(ARA);
+				ARA = JB.HEAPSort();
+				
+				System.out.println();
+				System.out.println("Sorted :");
+				System.out.println();
+				
+				for (int i = 0; i < keyA.size(); i++) {
+					CurrentProfile.appendText((ARA[i].getFirstName() + ", "));
+				}
+			}else if (Employee.isSelected()) {
+				CurrentProfile.clear();
+				HashMap<Integer, EmployeeClass> HME = EM.getEmployees();
+				Set<Integer> keyE = HME.keySet();
+				Person[] ARE = new EmployeeClass[keyE.size()];
+				Iterator ITE = keyE.iterator();
+				for (int i = 0; i < keyE.size(); i++) {
+					ARE[i] = HME.get(ITE.next());
+				}
+				
+				HeapStringFirstNameSort JB = new HeapStringFirstNameSort(ARE);
+				ARE = JB.HEAPSort();
+				
+				System.out.println();
+				System.out.println("Sorted :");
+				
+				for (int i = 0; i < keyE.size(); i++) {
+					CurrentProfile.appendText((ARE[i].getFirstName() + ", "));
+				}
+			}
+
+		});
 		
 	}
 	
