@@ -26,7 +26,7 @@ public class BinarySearchSortByID {
 	//	}
 	//}
 
-	public static EmployeeClass BinarySearchByID(int id){
+	public static EmployeeClass EmpBinarySearchByID(int id){
 		HashMap<Integer, EmployeeClass> employees = new EmployeeTable().getEmployees();
 		try {
 			int low = 1;
@@ -48,6 +48,54 @@ public class BinarySearchSortByID {
 			//is a id value that is not contained within the HashMap
 		}
 		return new EmployeeClass();
+	}
+	
+	public static Admin AdBinarySearchByID(int id){
+		HashMap<Integer, Admin> admin = new AdminTable().getAdmin();
+		try {
+			int low = 1;
+			int high = admin.size();
+			int middle = (low + high - 1) / 2;
+			
+			do {
+				if (id == admin.get(middle).getId()) {
+					return admin.get(middle);
+				} else if (id < admin.get(middle).getId()) {
+					high = middle - 1;
+				} else {
+					low = middle + 1;
+				}
+				middle = (low + high - 1) / 2;
+			} while (low <= high);
+			return new Admin();
+		} catch (NullPointerException ex) { // don't do anything if middle number 
+			//is a id value that is not contained within the HashMap
+		}
+		return new Admin();
+	}
+	
+	public static Volunteer VBinarySearchByID(int id){
+		HashMap<Integer, Volunteer> volun = new VolunteerTable().getVolunteers();
+		try {
+			int low = 1;
+			int high = volun.size();
+			int middle = (low + high - 1) / 2;
+			
+			do {
+				if (id == volun.get(middle).getVolunteerID()) {
+					return volun.get(middle);
+				} else if (id < volun.get(middle).getVolunteerID()) {
+					high = middle - 1;
+				} else {
+					low = middle + 1;
+				}
+				middle = (low + high - 1) / 2;
+			} while (low <= high);
+			return new Volunteer();
+		} catch (NullPointerException ex) { // don't do anything if middle number 
+			//is a id value that is not contained within the HashMap
+		}
+		return new Volunteer();
 	}
 	
 	// id is sorted by default by database

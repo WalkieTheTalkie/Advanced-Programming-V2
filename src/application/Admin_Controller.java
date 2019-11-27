@@ -5,8 +5,10 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.Set;
 
 import javafx.beans.property.SimpleStringProperty;
@@ -90,6 +92,12 @@ public class Admin_Controller {
 	private Button IDButton;
 	
 	@FXML
+	private TextField idSearch;
+	
+	@FXML
+	private Button searchButton2;
+	
+	@FXML
 	public void initialize() throws ClassNotFoundException, IOException {
 		
 		FileInputStream fis = new FileInputStream("EMPID.dat");
@@ -104,7 +112,7 @@ public class Admin_Controller {
 			CurrentProfile.appendText("\n\n ------------- \n\n");
 		});
 		EditMyProfile.setOnAction((event) ->{
-			Stage thirdStage = (Stage) EditProfile.getScene().getWindow();
+			Stage thirdStage = (Stage) EditMyProfile.getScene().getWindow();
 			thirdStage.setTitle("Aurora Food Admin Editor Page");
 			BorderPane root;
 			try {
@@ -363,7 +371,7 @@ public class Admin_Controller {
 		VolunteerTable VT = new VolunteerTable();
 
 		LastNameButton.setOnAction((event) -> {
-			CurrentProfile.clear();
+			//CurrentProfile.clear();
 			HashMap<Integer, Admin> HMA = AT.getAdmin();
 			Set<Integer> key = HMA.keySet();
 			Admin[] AR = new Admin[key.size()];
@@ -371,15 +379,15 @@ public class Admin_Controller {
 			if (Admin1.isSelected()) {
 				for (int i = 0; i < key.size(); i++) {
 					AR[i] = HMA.get(IT.next());
-					System.out.println(AR[i]);
+					//System.out.println(AR[i]);
 				}
 				for (int i = 0; i < key.size(); i++) {
-					System.out.println(AR[i]);
+					//System.out.println(AR[i]);
 				}
-				System.out.println(AR.length);
+				//System.out.println(AR.length);
 
 				Admin temp;
-				System.out.println("Strings in sorted order:");
+				//System.out.println("Strings in sorted order:");
 				for (int j = 0; j < AR.length; j++) {
 					for (int i = j + 1; i < AR.length; i++) {
 						// comparing adjacent strings
@@ -392,22 +400,26 @@ public class Admin_Controller {
 				}
 
 				// System.out.println(Arrays.asList(AR).toString());
-				CurrentProfile.appendText(Arrays.asList(AR).toString());
+				//CurrentProfile.appendText(Arrays.asList(AR).toString());
 				// System.out.println((new Admin()).compare(AR[0], AR[1]));
+				Database.getItems().clear();
+				for (int i = 0; i < AR.length; i++) {
+					Database.getItems().add(AR[i]);
+				}
 			} else if (Volunteer1.isSelected()) {
-				CurrentProfile.clear();
+				//CurrentProfile.clear();
 				HashMap<Integer, Volunteer> HMV = VT.getVolunteers();
 				Set<Integer> keyV = HMV.keySet();
 				Volunteer[] ARV = new Volunteer[keyV.size()];
 				Iterator ITV = keyV.iterator();
 				for (int i = 0; i < keyV.size(); i++) {
 					ARV[i] = HMV.get(ITV.next());
-					System.out.println(ARV[i].getLastName());
+					//System.out.println(ARV[i].getLastName());
 				}
-				System.out.println(ARV.length);
+				//System.out.println(ARV.length);
 
 				Volunteer temp;
-				System.out.println("Strings in sorted order:");
+				//System.out.println("Strings in sorted order:");
 				for (int j = 0; j < ARV.length; j++) {
 					for (int i = j + 1; i < ARV.length; i++) {
 						// comparing adjacent strings
@@ -419,25 +431,29 @@ public class Admin_Controller {
 					}
 				}
 				for (int i = 0; i < ARV.length; i++) {
-					System.out.println(ARV[i].getLastName());
+					//System.out.println(ARV[i].getLastName());
 				}
 
-				CurrentProfile.appendText(Arrays.asList(ARV).toString());
-			} else {
+				//CurrentProfile.appendText(Arrays.asList(ARV).toString());
+				Database.getItems().clear();
+				for (int i = 0; i < ARV.length; i++) {
+					Database.getItems().add(ARV[i]);
+				}
+			} else if (Employee.isSelected()) {
 
-				CurrentProfile.clear();
+				//CurrentProfile.clear();
 				HashMap<Integer, EmployeeClass> HME = EM.getEmployees();
 				Set<Integer> keyE = HME.keySet();
 				EmployeeClass[] ARE = new EmployeeClass[keyE.size()];
 				Iterator ITE = keyE.iterator();
 				for (int i = 0; i < keyE.size(); i++) {
 					ARE[i] = HME.get(ITE.next());
-					System.out.println(ARE[i].getLastName());
+					//System.out.println(ARE[i].getLastName());
 				}
-				System.out.println(ARE.length);
+				//System.out.println(ARE.length);
 
 				EmployeeClass temp;
-				System.out.println("Strings in sorted order:");
+				//System.out.println("Strings in sorted order:");
 				for (int j = 0; j < ARE.length; j++) {
 					for (int i = j + 1; i < ARE.length; i++) {
 						// comparing adjacent strings
@@ -449,9 +465,15 @@ public class Admin_Controller {
 					}
 				}
 				for (int i = 0; i < ARE.length; i++) {
-					System.out.println(ARE[i].getLastName());
+					//System.out.println(ARE[i].getLastName());
 				}
-				CurrentProfile.appendText(Arrays.asList(ARE).toString());
+				//CurrentProfile.appendText(Arrays.asList(ARE).toString());
+				Database.getItems().clear();
+				for (int i = 0; i < ARE.length; i++) {
+					Database.getItems().add(ARE[i]);
+				}
+			} else {
+				// Nothing happens if they don't have a radio button selected
 			}
 		});
 		
@@ -465,17 +487,18 @@ public class Admin_Controller {
 				for (int i = 0; i < keyV.size(); i++) {
 					ARV[i] = HMV.get(ITV.next());
 				}
-				
+
 				HeapStringFirstNameSort JB = new HeapStringFirstNameSort(ARV);
 				ARV = JB.HEAPSort();
-				
+
 				System.out.println();
 				System.out.println("Sorted :");
 				System.out.println();
-				
+
 				for (int i = 0; i < keyV.size(); i++) {
 					CurrentProfile.appendText((ARV[i].getFirstName() + ", "));
 				}
+				
 
 			}else if (Admin1.isSelected()) {
 				CurrentProfile.clear();
@@ -486,14 +509,14 @@ public class Admin_Controller {
 				for (int i = 0; i < keyA.size(); i++) {
 					ARA[i] = HMA.get(ITA.next());
 				}
-				
+
 				HeapStringFirstNameSort JB = new HeapStringFirstNameSort(ARA);
 				ARA = JB.HEAPSort();
-				
+
 				System.out.println();
 				System.out.println("Sorted :");
 				System.out.println();
-				
+
 				for (int i = 0; i < keyA.size(); i++) {
 					CurrentProfile.appendText((ARA[i].getFirstName() + ", "));
 				}
@@ -506,13 +529,13 @@ public class Admin_Controller {
 				for (int i = 0; i < keyE.size(); i++) {
 					ARE[i] = HME.get(ITE.next());
 				}
-				
+
 				HeapStringFirstNameSort JB = new HeapStringFirstNameSort(ARE);
 				ARE = JB.HEAPSort();
-				
+
 				System.out.println();
 				System.out.println("Sorted :");
-				
+
 				for (int i = 0; i < keyE.size(); i++) {
 					CurrentProfile.appendText((ARE[i].getFirstName() + ", "));
 				}
@@ -520,6 +543,109 @@ public class Admin_Controller {
 
 		});
 		
+		searchButton.setOnAction((event) -> {
+			ArrayList<EmployeeClass> emps = SearchByLastName.EmpSearchByLastName(searchField.getText());
+			ArrayList<Admin> ad = SearchByLastName.AdminSearchByLastName(searchField.getText());
+			ArrayList<Volunteer> v = SearchByLastName.VolunSearchByLastName(searchField.getText());
+			CurrentProfile.appendText("\n\nAdmin: ");
+			if (ad.isEmpty()) {
+				CurrentProfile.appendText("\nNo one by that name");
+			} else {
+				Iterator<Admin> itera = ad.iterator();
+				while (itera.hasNext()) {
+					CurrentProfile.appendText("\n" + itera.next());
+				}
+			}
+			CurrentProfile.appendText("\n\nEmployees: ");
+			if (emps.isEmpty()) {
+				CurrentProfile.appendText("\nNo one by that name");
+			} else {
+				Iterator<EmployeeClass> itera = emps.iterator();
+				while (itera.hasNext()) {
+					CurrentProfile.appendText("\n" + itera.next());
+				}
+			}
+			CurrentProfile.appendText("\n\nVolunteers: ");
+			if (v.isEmpty()) {
+				CurrentProfile.appendText("\nNo one by that name");
+			} else {
+				Iterator<Volunteer> itera = v.iterator();
+				while (itera.hasNext()) {
+					CurrentProfile.appendText("\n\n" + itera.next());
+				}
+			}
+		});
+		
+		searchButton2.setOnAction((event) -> {
+			try {
+				Admin ad = BinarySearchSortByID.AdBinarySearchByID(Integer.parseInt(idSearch.getText()));
+				EmployeeClass e = BinarySearchSortByID.EmpBinarySearchByID(Integer.parseInt(idSearch.getText()));
+				Volunteer v = BinarySearchSortByID.VBinarySearchByID(Integer.parseInt(idSearch.getText()));
+				CurrentProfile.appendText("\n\nAdmin: ");
+				if( ad.getUsername() == null) {
+					CurrentProfile.appendText("\nThere is no Admin with that ID number");
+				} else {
+					CurrentProfile.appendText(ad.toString());
+				}
+				CurrentProfile.appendText("\n\nEmployee: ");
+				if (e.getEmployeeUser() == null) {
+					CurrentProfile.appendText("\nThere is no Employee with that ID number");
+				} else {
+					CurrentProfile.appendText(e.toString());
+				}
+				CurrentProfile.appendText("\n\nVolunteer: ");
+				if (v.getUserName() == null) {
+					CurrentProfile.appendText("\nThere is no Volunteer with that ID number");
+				} else {
+					CurrentProfile.appendText("\n" + v.toString());
+				}
+			} catch (NumberFormatException ex) {
+				CurrentProfile.appendText("\n\nPlease enter a valid ID number");
+			}
+			
+		});
+		
+		IDButton.setOnAction((event) -> {
+			if (Admin1.isSelected()) {
+				LinkedList<Admin> ad = BinarySearchSortByID.AdminSortByID();
+				Database.getItems().clear();
+				for (int i = 0; i < ad.size(); i++) {
+					Database.getItems().add(ad.get(i));
+				}
+			} else if (Employee.isSelected()) {
+				LinkedList<EmployeeClass> emp = BinarySearchSortByID.EmployeeSortByID();
+				Database.getItems().clear();
+				for (int i = 0; i < emp.size(); i++) {
+					Database.getItems().add(emp.get(i));
+				}
+			} else if (Volunteer1.isSelected()) {
+				LinkedList<Volunteer> volun = BinarySearchSortByID.VolunteersSortByID();
+				Database.getItems().clear();
+				for (int i = 0; i < volun.size(); i++) {
+					Database.getItems().add(volun.get(i));
+				}
+			} else {
+				// does nothing if no radio button is selected
+			}
+		});
+		
+		EditProfile.setOnAction((event) -> {
+			Stage thirdStage = (Stage) EditProfile.getScene().getWindow();
+			thirdStage.setTitle("Aurora Food Edit User");
+			BorderPane root;
+			try {
+				root = (BorderPane) FXMLLoader.load(getClass().getResource("EditUser.fxml"));
+				Scene scene = new Scene(root, 700, 700);
+				scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+				thirdStage.setScene(scene);
+				thirdStage.show();
+
+			} catch (IOException ie) {
+				// TODO Auto-generated catch block
+				ie.printStackTrace();
+
+			}
+		});
 	}
 	
 }
