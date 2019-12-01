@@ -16,7 +16,10 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-
+/**
+ * Controls Employee FXML Page 
+ *
+ */
 public class EmployeeController {
 	@FXML
 	private ToggleGroup options;
@@ -51,13 +54,29 @@ public class EmployeeController {
 				ObjectInputStream ios = new ObjectInputStream(fis);
 				EmployeeClass e = (EmployeeClass) ios.readObject();
 				if (viewProfile.isSelected()) {
+					area.clear();
 					area.appendText(e.toString());
 					area.appendText("\n\n ------------- \n\n");
 				} else if (editProfile.isSelected()) {
+					Stage thirdStage = (Stage) editProfile.getScene().getWindow();
+					thirdStage.setTitle("Aurora Food Employee Editor Page");
+					BorderPane root;
+					try {
+						root = (BorderPane) FXMLLoader.load(getClass().getResource("Employee_UserEditor.fxml"));
+						Scene scene = new Scene(root, 700, 700);
+						scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+						thirdStage.setScene(scene);
+						thirdStage.show();
 
+					} catch (IOException ie) {
+						// TODO Auto-generated catch block
+						ie.printStackTrace();
+
+					}
 					area.appendText("\n\n ------------- \n\n");
 				} else if (viewWorkHours.isSelected()) {
 					String hours = "Working Hours:" + e.getWorkinHours();
+					area.clear();
 					area.appendText(hours);
 					area.appendText("\n\n ------------- \n\n");
 				} else if (logWorkHours.isSelected()) {

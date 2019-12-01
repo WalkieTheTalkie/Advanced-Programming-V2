@@ -14,7 +14,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-
+/**
+ * admin control to create users
+ *
+ */
 public class NewUser_Controller {
 	
 	@FXML 

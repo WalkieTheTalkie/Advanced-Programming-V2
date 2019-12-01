@@ -25,7 +25,11 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-
+/**
+ * controls the Home Page and allows a user
+ * to decide to see which database table to view.
+ *
+ */
 public class HomePageController {
 	@FXML
 	private Button Continue;

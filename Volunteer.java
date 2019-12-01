@@ -1,9 +1,13 @@
 package application;
 
 import java.io.Serializable;
-
+import java.util.Comparator;
+/**
+ * Class that stores Volunteer data 
+ *
+ */
 @SuppressWarnings("serial")
-public class Volunteer extends Person implements Serializable  {
+public class Volunteer extends Person implements Serializable, Comparator, Comparable  {
 	int VolunteerID;
 	int HoursVolunteered;
 	Boolean CourtOrdered;
@@ -122,6 +126,24 @@ public class Volunteer extends Person implements Serializable  {
 				+ " " + MiddleInitial + " " + LastName + " " + Email + " "
 				+ Phone + " " + Gender + " " + Address + " " + BirthDate
 				+ " " + EmergencyContact;
+	}
+	
+	/**
+	 * uses comparator to sort objects by last name
+	 */
+	public int compare(Object o1, Object o2) {
+		Volunteer v1 = (Volunteer) o1;
+		Volunteer v2 = (Volunteer) o2;
+		
+		return v1.getLastName().compareToIgnoreCase(v2.getLastName());
+	}
+	/**
+	 * uses comparable to sort objects by hours
+	 */
+	@Override
+	public int compareTo(Object o) {
+		int compareHours = ((Volunteer) o).getHoursVolunteered();
+		return compareHours - this.HoursVolunteered;
 	}
 
 }

@@ -4,15 +4,24 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-
+/**
+ * uploads and updates to the admin table in MySQL
+ * 
+ *
+ */
 public class DBAdmin {
 	private Connection connection;
 	private Admin admin;
-	
+	/**
+	 * method allows the object to be called from other classes
+	 */
 	DBAdmin(){
 		
 	}
-	
+	/**
+	 * Connects and uploads an Admin Object to Database
+	 * @param admin Admin Object to be uploaded/updated
+	 */
 	DBAdmin(Admin admin){
 		try {
 			this.admin = admin;
@@ -22,12 +31,17 @@ public class DBAdmin {
 			ex.printStackTrace();
 		}
 	}
-	
+	/**
+	 * method gets the connection to the database table
+	 * @return Connection to Admin table
+	 */
 	public Connection getConnection() {
 		setConnection();
 		return this.connection;
 	}
-	
+	/**
+	 * sets up the connection to the database table
+	 */
 	private void setConnection() {
 		try {
 			connection = DriverManager.getConnection("jdbc:mysql://45.55.136.114/csc3610_Group3_finalProject", "csc3610", "csc3610");
@@ -35,7 +49,12 @@ public class DBAdmin {
 			e.printStackTrace();
 		}
 	}
-	
+	/**
+	 * MySQL statement that reads input from the program and puts it
+	 * into a prepared statement
+	 * @param a Calls Admin Object
+	 * @throws SQLException
+	 */
 	private void addAdmin(Admin a) throws SQLException{
 		String query = "insert into admin (id, username, password, firstName, middleInitial,"
 				+ " lastName, birthDate, gender, email, phone, address, emergencyContact)"

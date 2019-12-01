@@ -7,7 +7,10 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.fxml.FXMLLoader;
 
-
+/**
+ * Main Application that runs the entire program
+ *
+ */
 public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {

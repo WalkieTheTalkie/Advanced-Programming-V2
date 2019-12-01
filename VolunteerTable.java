@@ -6,23 +6,46 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashMap;
-
+/**
+ * creates table of Volunteer from database
+ *
+ */
 public class VolunteerTable {
+	/**
+	 * stores data of volunteers in a hashmap
+	 */
 	private HashMap<Integer, Volunteer> volunteers = new HashMap<Integer, Volunteer>();
+	/**
+	 * gets connection to database
+	 */
 	private Connection connection;
+	/**
+	 * MySQL statement that displays data
+	 */
 	private final String SELECT_QUERY = "SELECT volunID, hours, courtOrdered, username, password, firstName,"
 			+ " middleInitial, lastName, email, phone, gender, address, birthDate,"
 			+ " emergencyContact FROM csc3610_Group3_finalProject.volunteers";
-	
+	/**
+	 * MySQL statement that updates a row in a table
+	 */
 	private String update_query = "UPDATE csc3610_Group3_finalProject.volunteers SET"
 			+ " hours = ?, courtOrdered = ?, username = ?, password = ?, firstName = ?, middleInitial = ?,"
 			+ " lastName = ?, email = ?, phone = ?, gender = ?, address = ?,"
 			+ " birthDate = ?, emergencyContact = ? WHERE volunID = ?;";
-	
+	/**
+	 * MySQL Statement that deletes a row from a table based on ID
+	 */
+	private String delete_query = "DELETE FROM csc3610_Group3_finalProject.volunteers"
+			+ " WHERE volunID = ?;";
+	/**
+	 * calls setVolunteers to update table with database values
+	 */
 	VolunteerTable(){
 		setVolunteers();
 	}
-	
+	/**
+	 * resultSet updated with Volunteer information
+	 */
 	public void setVolunteers() {
 		setConnection();
 		try {
@@ -56,16 +79,25 @@ public class VolunteerTable {
 	public HashMap<Integer, Volunteer> getVolunteers() {
 		return volunteers;
 	}
-	
+	/**
+	 * identifies volunteer by ID
+	 * @param id unique identifier
+	 * @return volunteer information
+	 */
 	public Volunteer getVolunteerByID(int id) {
 		return volunteers.get(id);
 	}
-	
+	/**
+	 * uses DBVolunteer to connect to database
+	 */
 	public void setConnection() {
 		DBVolunteer volun = new DBVolunteer();
 		this.connection = volun.getConnection();
 	}
-	
+	/**
+	 * calls volunteer table to update existing volunteer
+	 * @param volun
+	 */
 	public void updateVolunteer(Volunteer volun) {
 		try {
 			PreparedStatement prepared = connection.prepareStatement(update_query);
@@ -89,5 +121,18 @@ public class VolunteerTable {
 			ex.printStackTrace();
 		}
 		
+	}
+	/**
+	 * method deletes a profile
+	 * @param num the ID to input to delete an employee
+	 */
+	public void delete(int num) {
+		try {
+			PreparedStatement prepared = connection.prepareStatement(delete_query);
+			prepared.setInt(1, num);
+			prepared.execute();
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		}
 	}
 }

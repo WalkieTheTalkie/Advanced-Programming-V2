@@ -1,5 +1,4 @@
 package application;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -17,12 +16,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-/**
- * edits currently logged in volunteer
- *
- */
-public class VolunteerEditorController {
 
+public class Admin_EditorController {
 	@FXML
 	private TextField Username;
 
@@ -67,57 +62,57 @@ public class VolunteerEditorController {
 		
 		FileInputStream vfis = new FileInputStream("EMPID.dat");
 		ObjectInputStream ios = new ObjectInputStream(vfis);
-		Volunteer v = (Volunteer) ios.readObject();
+		Admin a = (Admin) ios.readObject();
 		
 		
-		Fname.appendText(v.getFirstName());;
-		Lname.appendText(v.getLastName());
-		Minitial.appendText(v.getMiddleInitial());
-		BirthDate.appendText(v.getBirthDate());
-		Gender.appendText(v.getGender());
-		Email.appendText(v.getEmail());
-		EmergencyContact.appendText(v.getEmergencyContact());
-		Phone.appendText(v.getPhone());
-		Address.appendText(v.getAddress());
-		Username.appendText(v.getUserName());
-		Password.appendText(v.getPassword());
+		Fname.appendText(a.getFirstName());;
+		Lname.appendText(a.getLastName());
+		Minitial.appendText(a.getMiddleInitial());
+		BirthDate.appendText(a.getBirthDate());
+		Gender.appendText(a.getGender());
+		Email.appendText(a.getEmail());
+		EmergencyContact.appendText(a.getEmergencyContact());
+		Phone.appendText(a.getPhone());
+		Address.appendText(a.getAddress());
+		Username.appendText(a.getUsername());
+		Password.appendText(a.getPassword());
 		
 		Save.setOnAction((event) -> {
 		
-			v.setFirstName(Fname.getText());
-			v.setLastName(Lname.getText());
-			v.setMiddleInitial(Minitial.getText());
-			v.setBirthDate(BirthDate.getText());
-			v.setGender(Gender.getText());
-			v.setEmail(Email.getText());
-			v.setEmergencyContact(EmergencyContact.getText());
-			v.setPhone(Phone.getText());
-			v.setAddress(Address.getText());
-			v.setUserName(Username.getText());
-			v.setPassword(Password.getText());
+			a.setFirstName(Fname.getText());
+			a.setLastName(Lname.getText());
+			a.setMiddleInitial(Minitial.getText());
+			a.setBirthDate(BirthDate.getText());
+			a.setGender(Gender.getText());
+			a.setEmail(Email.getText());
+			a.setEmergencyContact(EmergencyContact.getText());
+			a.setPhone(Phone.getText());
+			a.setAddress(Address.getText());
+			a.setUsername(Username.getText());
+			a.setPassword(Password.getText());
 
-			System.out.println(v.toString());
+			System.out.println(a.toString());
 
-			VolunteerTable t = new VolunteerTable();
-			t.updateVolunteer(v);
+			AdminTable t = new AdminTable();
+			t.updateAdmin(a);
 			
-			VolunteerTable tab = new VolunteerTable();
-			HashMap<Integer, Volunteer> a = tab.getVolunteers();
+			AdminTable tab = new AdminTable();
+			HashMap<Integer, Admin> ad = tab.getAdmin();
 
-			System.out.println(a.keySet());
+			System.out.println(ad.keySet());
 
-			for (int key : a.keySet()) {
-				if (Username.getText().equals(a.get(key).getUserName())) {
-					if (Password.getText().equals(a.get(key).getPassword())) {
-						System.out.println(a.get(key).toString());
+			for (int key : ad.keySet()) {
+				if (Username.getText().equals(ad.get(key).getUsername())) {
+					if (Password.getText().equals(ad.get(key).getPassword())) {
+						System.out.println(ad.get(key).toString());
 						File f = new File("EMPID.dat");
 						try {
 
-							System.out.println(a.get(key).getVolunteerID());
+							System.out.println(ad.get(key).getId());
 
 							FileOutputStream fos = new FileOutputStream(f);
 							ObjectOutputStream oos = new ObjectOutputStream(fos);
-							oos.writeObject(a.get(key));
+							oos.writeObject(ad.get(key));
 							FileInputStream fis = new FileInputStream(f);
 							ObjectInputStream ios2 = new ObjectInputStream(fis);
 							System.out.println(ios2.readObject());
@@ -132,8 +127,8 @@ public class VolunteerEditorController {
 			
 			try {
 				Stage thirdStage = (Stage) Cancel.getScene().getWindow();
-				thirdStage.setTitle("Aurora Food Pantry Volunteer Page");
-				BorderPane root = (BorderPane) FXMLLoader.load(getClass().getResource("Volunteer_Scene.fxml"));
+				thirdStage.setTitle("Aurora Food Pantry Admin Page");
+				BorderPane root = (BorderPane) FXMLLoader.load(getClass().getResource("AdminPage.fxml"));
 				Scene scene = new Scene(root, 700, 700);
 				scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 				thirdStage.setScene(scene);
@@ -147,8 +142,8 @@ public class VolunteerEditorController {
 		Cancel.setOnAction((event) -> {
 			try {
 				Stage thirdStage = (Stage) Cancel.getScene().getWindow();
-				thirdStage.setTitle("Aurora Food Pantry Volunteer Page");
-				BorderPane root = (BorderPane) FXMLLoader.load(getClass().getResource("Volunteer_Scene.fxml"));
+				thirdStage.setTitle("Aurora Food Pantry Admin Page");
+				BorderPane root = (BorderPane) FXMLLoader.load(getClass().getResource("AdminPage.fxml"));
 				Scene scene = new Scene(root, 700, 700);
 				scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 				thirdStage.setScene(scene);

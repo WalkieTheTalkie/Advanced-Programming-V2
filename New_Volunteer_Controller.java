@@ -8,7 +8,12 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
-
+/**
+ * allows new users to create a volunteer.
+ * Employees and Admins can be created by
+ * existing admins.
+ *
+ */
 public class New_Volunteer_Controller {
 	@FXML 
 	private ToggleGroup options;

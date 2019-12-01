@@ -1,7 +1,9 @@
 package application;
 
 import java.io.Serializable;
-
+/**
+ * Class that other classes extend for easy access.
+ */
 @SuppressWarnings("serial")
 public class Person implements Serializable{
 	String FirstName;

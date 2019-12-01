@@ -6,23 +6,46 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.sql.Statement;
-
+/**
+ * creates table of Employees from database
+ *
+ */
 public class EmployeeTable {
+	/**
+	 * stores data of employees in a hashmap
+	 */
 	private HashMap<Integer, EmployeeClass> employees = new HashMap<Integer, EmployeeClass>();
+	/**
+	 * gets connection to database
+	 */
 	private Connection connection;
+	/**
+	 * MySQL statement that displays data
+	 */
 	private final String SELECT_QUERY = "SELECT empID, workHours, username, password, firstName,"
 			+ " middleInitial, lastName, email, phone, gender, address, birthDate,"
 			+ " emergencyContact FROM csc3610_Group3_finalProject.employees";
-	
+	/**
+	 * MySQL statement that updates a row in a table
+	 */
 	private String update_query = "UPDATE csc3610_Group3_finalProject.employees SET"
 			+ " workHours = ?, username = ?, password = ?, firstName = ?, middleInitial = ?,"
 			+ " lastName = ?, email = ?, phone = ?, gender = ?, address = ?,"
 			+ " birthDate = ?, emergencyContact = ? WHERE empID = ?;";
-	
+	/**
+	 * MySQL Statement that deletes a row from a table based on ID
+	 */
+	private String delete_query = "DELETE FROM csc3610_Group3_finalProject.employees"
+			+ " WHERE empID = ?;";
+	/**
+	 * calls setEmployees to update table with database values
+	 */
 	EmployeeTable(){
 		setEmployees();
 	}
-	
+	/**
+	 * resultSet updated with Employee information
+	 */
 	public void setEmployees() { // Connection must be set before using
 		setConnection();
 		try {
@@ -57,17 +80,26 @@ public class EmployeeTable {
 	public HashMap<Integer, EmployeeClass> getEmployees() {
 		return employees;
 	}
-	
+	/**
+	 * identifies employee by ID
+	 * @param id unique identifier
+	 * @return employee information
+	 */
 	public EmployeeClass getEmployeeByID(int id) {
 		return employees.get(id);
 	}
-	
+	/**
+	 * uses DBEmployee to connect to database
+	 */
 	public void setConnection() {
 		DBEmployee emp = new DBEmployee();
 		Connection connect = emp.getConnection();
 		this.connection = connect;
 	}
-	
+	/**
+	 * calls employee table to update existing employee
+	 * @param emp
+	 */
 	public void updateEmployee(EmployeeClass emp) {
 		try {
 			PreparedStatement prepared = connection.prepareStatement(update_query);
@@ -91,4 +123,18 @@ public class EmployeeTable {
 		}
 		
 	}
+	/**
+	 * method deletes a profile
+	 * @param num the ID to input to delete an employee
+	 */
+	public void delete(int num) {
+		try {
+			PreparedStatement prepared = connection.prepareStatement(delete_query);
+			prepared.setInt(1, num);
+			prepared.execute();
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		}
+	}
+	
 }

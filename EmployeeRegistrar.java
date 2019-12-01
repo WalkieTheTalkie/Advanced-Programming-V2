@@ -1,7 +1,11 @@
 package application;
 
 import java.util.Scanner;
-
+/**
+ * this is just a test and doesn't do anything
+ * @author walki
+ *
+ */
 public class EmployeeRegistrar {
 	
 	

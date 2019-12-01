@@ -6,23 +6,44 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashMap;
-
+/**
+ * Creates a table of Admins from database 
+ *
+ */
 public class AdminTable {
+	/**
+	 * stored data of an admin in a hashmap
+	 */
 	private HashMap<Integer, Admin> admin = new HashMap<Integer, Admin>();
+	/**
+	 * database connection
+	 */
 	private Connection connection;
+	/**
+	 * MySQL statement that displays data
+	 */
 	private final String SELECT_QUERY = "SELECT id, username, password, firstName,"
 			+ " middleInitial, lastName, email, phone, gender, address, birthDate,"
 			+ " emergencyContact FROM csc3610_Group3_finalProject.admin";
-	
+	/**
+	 * Updates a row in a table
+	 */
 	private String update_query = "UPDATE csc3610_Group3_finalProject.admin SET"
 			+ " username = ?, password = ?, firstName = ?, middleInitial = ?,"
 			+ " lastName = ?, email = ?, phone = ?, gender = ?, address = ?,"
 			+ " birthDate = ?, emergencyContact = ? WHERE id = ?;";
 	
+	private String delete_query = "DELETE FROM csc3610_Group3_finalProject.admin"
+			+ " WHERE id = ?;";
+	/**
+	 * calls setAdmin to update a table with database values
+	 */
 	AdminTable(){
 		setAdmin();
 	}
-	
+	/**
+	 * A resultSet updated with Admin information
+	 */
 	public void setAdmin() {
 		setConnection();
 		try {
@@ -54,17 +75,26 @@ public class AdminTable {
 	public HashMap<Integer, Admin> getAdmin() {
 		return admin;
 	}
-	
+	/**
+	 * identifies admin by ID
+	 * @param id unique identifier
+	 * @return admin information
+	 */
 	public Admin getAdminByID(int id) {
 		return admin.get(id);
 	}
 	
-	
+	/**
+	 * uses DBAdmin to connect to database
+	 */
 	public void setConnection() {
 		DBAdmin ad = new DBAdmin();
 		this.connection = ad.getConnection();
 	}
-	
+	/**
+	 * calls admin table to update an existing admin
+	 * @param ad Admin Object
+	 */
 	public void updateAdmin(Admin ad) {
 		try {
 			PreparedStatement prepared = connection.prepareStatement(update_query);
@@ -86,6 +116,19 @@ public class AdminTable {
 			ex.printStackTrace();
 		}
 		
+	}
+	/**
+	 * method deletes a profile
+	 * @param num the ID to input to delete an admin
+	 */
+	public void delete(int num) {
+		try {
+			PreparedStatement prepared = connection.prepareStatement(delete_query);
+			prepared.setInt(1, num);
+			prepared.execute();
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		}
 	}
 	
 }

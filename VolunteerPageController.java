@@ -15,7 +15,10 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-
+/**
+ * controls Volunteer FXML page
+ *
+ */
 public class VolunteerPageController {
 	@FXML
 	private RadioButton viewProfile;
@@ -36,9 +39,6 @@ public class VolunteerPageController {
 	private Button selected;
 	
 	@FXML
-	private Button requestTicket;
-	
-	@FXML
 	private Button Logout;
 
 	public void initialize() throws Exception{
@@ -50,6 +50,7 @@ public class VolunteerPageController {
 				ObjectInputStream ios = new ObjectInputStream(vfis);
 				Volunteer v = (Volunteer) ios.readObject();
 				if(viewProfile.isSelected()){
+					area.clear();
 					area.appendText(v.toString());
 					area.appendText("\n\n ------------- \n\n");
 				}else if(editProfile.isSelected()) {

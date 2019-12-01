@@ -15,12 +15,11 @@
       <AnchorPane prefHeight="664.0" prefWidth="672.0" style="-fx-background-color: aaeeff;" BorderPane.alignment="CENTER">
          <children>
             <TextArea fx:id="area" layoutX="142.0" layoutY="148.0" prefHeight="273.0" prefWidth="386.0" />
-            <Button fx:id="requestTicket" layoutX="283.0" layoutY="456.0" mnemonicParsing="false" text="Request Ticket" />
             <RadioButton fx:id="viewProfile" layoutX="290.0" layoutY="52.0" mnemonicParsing="false" text="View Profile">
                <toggleGroup>
                   <ToggleGroup fx:id="volOptions" />
                </toggleGroup></RadioButton>
-            <RadioButton fx:id="logWorkHours" layoutX="188.0" layoutY="52.0" mnemonicParsing="false" text="log Hours" toggleGroup="$volOptions" />
+            <RadioButton fx:id="logWorkHours" layoutX="188.0" layoutY="52.0" mnemonicParsing="false" selected="true" text="log Hours" toggleGroup="$volOptions" />
             <RadioButton fx:id="editProfile" layoutX="405.0" layoutY="52.0" mnemonicParsing="false" text="Edit Profile" toggleGroup="$volOptions" />
             <Button fx:id="selected" layoutX="447.0" layoutY="93.0" mnemonicParsing="false" text="Continue" />
             <Label layoutX="232.0" layoutY="14.0" text="What do you want to do:">

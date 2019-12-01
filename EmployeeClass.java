@@ -1,9 +1,15 @@
 package application;
 
 import java.io.Serializable;
-
+import java.util.Comparator;
+/**
+ * Class that stores employee data
+ * @author Rachel Skonning
+ * @author Luke Gaudiano
+ *
+ */
 @SuppressWarnings("serial")
-public class EmployeeClass extends Person implements Serializable {
+public class EmployeeClass extends Person implements Serializable, Comparator, Comparable{
 	private int EmployeeID;
 	private int workinHours;
 	private String employeeUser;
@@ -75,5 +81,23 @@ public class EmployeeClass extends Person implements Serializable {
 		return "\n" + EmployeeID + " " + FirstName + " " + MiddleInitial + " " + LastName + " " + Email + " " +
 				Phone + " " + Gender + " " + Address + " " + BirthDate + " " + EmergencyContact;
 	}
+	/**
+	 * uses comparator to sort objects by last name
+	 */
+	@Override
+	public int compare(Object o1, Object o2) {
+		EmployeeClass E1 = (EmployeeClass) o1;
+		EmployeeClass E2 = (EmployeeClass) o2;
+		return E1.getLastName().compareToIgnoreCase(E2.getLastName());
+	}
+	/**
+	 * uses comparable to sort objects by hours
+	 */
+	@Override
+	public int compareTo(Object compareThis) {
+		int compareHours = ((EmployeeClass) compareThis).getWorkinHours();
+		return compareHours - this.workinHours;
+	}
+
 	
 }

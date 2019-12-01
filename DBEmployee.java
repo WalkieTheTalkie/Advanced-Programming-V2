@@ -4,15 +4,24 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-
+/**
+ * Connects to the Database Table Employee
+ * 
+ *
+ */
 public class DBEmployee {
 	private Connection connection;
 	private EmployeeClass emp;
-	
+	/**
+	 * method allows the object to be called from other classes
+	 */
 	DBEmployee(){
 		
 	}
-	
+	/**
+	 * Method to upload/update an Employee
+	 * @param emp EmployeeClass Object to be uploaded/updated
+	 */
 	DBEmployee(EmployeeClass emp) {
 		try {
 			this.emp = emp;
@@ -23,12 +32,18 @@ public class DBEmployee {
 		}
 		
 	}
-	
+/**
+ * gets connection to database table
+ * @return connection to database
+ */
 	public Connection getConnection() {
 		this.setConnection();
 		return this.connection;
 	}
-	
+
+	/**
+	 * sets up the connection to the database table
+	 */
 	private void setConnection() {
 		try {
 			connection = DriverManager.getConnection("jdbc:mysql://45.55.136.114/csc3610_Group3_finalProject", "csc3610", "csc3610");
@@ -36,7 +51,12 @@ public class DBEmployee {
 			e.printStackTrace();
 		}
 	}
-	
+	/**
+	 * MySQL statement that reads input from the program and puts it
+	 * into a prepared statement
+	 * @param emp Calls EmployeeClass Object
+	 * @throws SQLException
+	 */
 	private void addEmployee(EmployeeClass emp) throws SQLException{
 		String query = "insert into employees (empID, workHours, username, password, firstName, middleInitial, lastName,"
 				+ " email, phone, gender, address, birthDate, emergencyContact) values"

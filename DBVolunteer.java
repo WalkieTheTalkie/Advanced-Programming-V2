@@ -4,15 +4,24 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-
+/**
+ * Connects to the Database Table Volunteer
+ * 
+ *
+ */
 public class DBVolunteer {
 	private Connection connection;
 	private Volunteer volun;
-	
+	/**
+	 * method allows the object to be called from other classes
+	 */
 	DBVolunteer(){
 		
 	}
-	
+	/**
+	 * Method to upload/update a Volunteer
+	 * @param volun Volunteer Object to be uploaded/updated
+	 */
 	DBVolunteer(Volunteer volun){
 		try {
 			this.volun = volun;
@@ -24,12 +33,17 @@ public class DBVolunteer {
 		
 		
 	}
-	
+	/**
+	 * gets connection to database table
+	 * @return connection to database
+	 */
 	public Connection getConnection() {
 		setConnection();
 		return this.connection;
 	}
-	
+	/**
+	 * sets up the connection to the database table
+	 */
 	private void setConnection() {
 		try {
 			connection = DriverManager.getConnection("jdbc:mysql://45.55.136.114/csc3610_Group3_finalProject", "csc3610", "csc3610");
@@ -37,7 +51,11 @@ public class DBVolunteer {
 			e.printStackTrace();
 		}
 	}
-	
+	/**
+	 * MySQL statement to be utilized to interact with database
+	 * @param volun Volunteer Object where data will be implemented from
+	 * @throws SQLException
+	 */
 	private void addVolunteer(Volunteer volun) throws SQLException{
 		String query = "insert into volunteers (volunID, hours, courtOrdered, username, password, firstName, middleInitial, lastName,"
 				+ " email, phone, gender, address, birthDate, emergencyContact) values"
