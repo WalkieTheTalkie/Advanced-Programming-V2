@@ -685,6 +685,61 @@ public class Admin_Controller {
 		});
 		/*
 		 * 
+		 * Sorting Profiles by Least Hours
+		 * 
+		 */
+		LeastHoursButton.setOnAction((event) ->{
+			if(Volunteer1.isSelected()) {
+				CurrentProfile.clear();
+				HashMap<Integer, Volunteer> HMV = VT.getVolunteers();
+				Set<Integer> keyV = HMV.keySet();
+				Volunteer[] ARV = new Volunteer[keyV.size()];
+				Iterator ITV = keyV.iterator();
+				for (int i = 0; i < keyV.size(); i++) {
+					ARV[i] = HMV.get(ITV.next());
+					System.out.println(ARV[i].getLastName());
+				}
+				
+				Queue <Integer> QS = (Queue<Integer>) new QuickSortByLeastHours(ARV);
+				ARV = ((QuickSortByLeastHours) QS).quicksort();
+				
+				int[] ia = new int[HMV.size()]; 
+				for (int i = 0; i < keyV.size(); i++) {
+					ia[i] = ARV[i].getHoursVolunteered();
+					CurrentProfile.appendText(ARV[i].toString());
+				}
+				
+				
+				System.out.println(Arrays.asList(ia).toString());
+			}
+			else if(Employee.isSelected()){
+				CurrentProfile.clear();
+				HashMap<Integer, EmployeeClass> HME = EM.getEmployees();
+				Set<Integer> keyE = HME.keySet();
+				EmployeeClass[] ARE = new EmployeeClass[keyE.size()];
+				Iterator ITE = keyE.iterator();
+				for (int i = 0; i < keyE.size(); i++) {
+					ARE[i] = HME.get(ITE.next());
+					System.out.println(ARE[i].getLastName());
+				}
+				
+				QuickSortByLeastHours2 QS = new QuickSortByLeastHours2(ARE);
+				ARE = QS.quicksort();
+				
+				int[] ia = new int[HME.size()]; 
+				for (int i = 0; i < keyE.size(); i++) {
+					ia[i] = ARE[i].getWorkinHours();
+					CurrentProfile.appendText(ARE[i].toString());
+				}
+				
+				
+				
+				System.out.println(Arrays.asList(ia).toString());
+			}
+			
+		});
+		/*
+		 * 
 		 * Sorting Profiles by Most Hours
 		 * 
 		 */
