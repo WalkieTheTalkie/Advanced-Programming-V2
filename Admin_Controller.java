@@ -13,9 +13,11 @@ import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.EmptyStackException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Set;
 import java.util.Stack;
 
@@ -112,7 +114,6 @@ public class Admin_Controller {
 	@FXML
 	private Button searchButton2;
 	
-	int clicked = 0;
 	
 	/**
 	 * runs the controller when called
@@ -709,104 +710,126 @@ public class Admin_Controller {
 		 * 
 		 */
 		MostHoursButton.setOnAction((event)->{
-			CurrentProfile.clear();
-			if (Admin1.isSelected()) {
-				CurrentProfile.appendText("NOT APPLICABLE");
-			}
-			else if (Employee.isSelected()) {
-			HashMap<Integer, EmployeeClass> h = EM.getEmployees();
-			Set<Integer> A = h.keySet();
-			EmployeeClass[] ah = new EmployeeClass[A.size()];
-			Iterator it = A.iterator();
-			for(int i = 0; i<h.size();i++) {
-				ah[i] = h.get(it.next());
-			} 
-			int mh[] = new int[ah.length];
-			for(int j = 0; j < ah.length; j++) {
-				mh[j] = ah[j].getWorkinHours();
-			}
-			sort(mh, 0, mh.length-1);
-			Arrays.sort(ah);
-			
-			//CurrentProfile.appendText(Arrays.asList(ah).toString());
-			Arrays.sort(ah, Collections.reverseOrder());
-			Stack<EmployeeClass> emps = new Stack<EmployeeClass>();
-			for (int i = 0; i < ah.length; i++) {
-				emps.add(ah[i]);
-			}
-			Database.getItems().clear();
-			for (int i = 0; i < emps.capacity(); i++) {
-				Database.getItems().add(emps.pop());
-			}
-			}
-			else {
-				HashMap<Integer, Volunteer> h = VT.getVolunteers();
+			try {
+				CurrentProfile.clear();
+				if (Admin1.isSelected()) {
+					CurrentProfile.appendText("NOT APPLICABLE");
+				}
+				else if (Employee.isSelected()) {
+				HashMap<Integer, EmployeeClass> h = EM.getEmployees();
 				Set<Integer> A = h.keySet();
-				Volunteer[] ah = new Volunteer[A.size()];
+				EmployeeClass[] ah = new EmployeeClass[A.size()];
 				Iterator it = A.iterator();
 				for(int i = 0; i<h.size();i++) {
 					ah[i] = h.get(it.next());
 				} 
 				int mh[] = new int[ah.length];
 				for(int j = 0; j < ah.length; j++) {
-					mh[j] = ah[j].getHoursVolunteered();
+					mh[j] = ah[j].getWorkinHours();
 				}
 				sort(mh, 0, mh.length-1);
-				for(int n = 0; n<mh.length; ++n) {
-					System.out.println(mh[n] + " ");
-				}
 				Arrays.sort(ah);
+				
 				//CurrentProfile.appendText(Arrays.asList(ah).toString());
 				Arrays.sort(ah, Collections.reverseOrder());
-				Stack<Volunteer> volun = new Stack<Volunteer>();
+				Stack<EmployeeClass> emps = new Stack<EmployeeClass>();
 				for (int i = 0; i < ah.length; i++) {
-					volun.add(ah[i]);
+					emps.add(ah[i]);
 				}
 				Database.getItems().clear();
-				for (int i = 0; i < volun.capacity(); i++) {
-					Database.getItems().add(volun.pop());
+				for (int i = 0; i < emps.capacity(); i++) {
+					Database.getItems().add(emps.pop());
 				}
-				
+				}
+				else {
+					HashMap<Integer, Volunteer> h = VT.getVolunteers();
+					Set<Integer> A = h.keySet();
+					Volunteer[] ah = new Volunteer[A.size()];
+					Iterator it = A.iterator();
+					for(int i = 0; i<h.size();i++) {
+						ah[i] = h.get(it.next());
+					} 
+					int mh[] = new int[ah.length];
+					for(int j = 0; j < ah.length; j++) {
+						mh[j] = ah[j].getHoursVolunteered();
+					}
+					sort(mh, 0, mh.length-1);
+					for(int n = 0; n<mh.length; ++n) {
+						System.out.println(mh[n] + " ");
+					}
+					Arrays.sort(ah);
+					//CurrentProfile.appendText(Arrays.asList(ah).toString());
+					Arrays.sort(ah, Collections.reverseOrder());
+					Stack<Volunteer> volun = new Stack<Volunteer>();
+					for (int i = 0; i < ah.length; i++) {
+						volun.add(ah[i]);
+					}
+					Database.getItems().clear();
+					for (int i = 0; i < volun.capacity(); i++) {
+						Database.getItems().add(volun.pop());
+					}
+					
+				}
+			} catch (EmptyStackException ex) {
+				// does nothing
 			}
+			
 		});
+		
 		/*
 		 * 
 		 * Sorting Profiles by Least Hours
 		 * 
 		 */
-				LeastHoursButton.setOnAction((event) ->{
+		LeastHoursButton.setOnAction((event) ->{
 			if(Volunteer1.isSelected()) {
-				CurrentProfile.clear();
+				//CurrentProfile.clear();
 				HashMap<Integer, Volunteer> HMV = VT.getVolunteers();
 				Set<Integer> keyV = HMV.keySet();
 				Volunteer[] ARV = new Volunteer[keyV.size()];
 				Iterator ITV = keyV.iterator();
 				for (int i = 0; i < keyV.size(); i++) {
 					ARV[i] = HMV.get(ITV.next());
-					System.out.println(ARV[i].getLastName());
+					//System.out.println(ARV[i].getLastName());
 				}
 				
-				Queue <Integer> QS = (Queue<Integer>) new QuickSortByLeastHours(ARV);
-				ARV = ((QuickSortByLeastHours) QS).quicksort();
+				LinkedList<Volunteer> v = new LinkedList<Volunteer>();
+				
+				QuickSortByLeastHours QS = new QuickSortByLeastHours(ARV);
+				
+				ARV = QS.quicksort();
+				
 				
 				int[] ia = new int[HMV.size()]; 
 				for (int i = 0; i < keyV.size(); i++) {
 					ia[i] = ARV[i].getHoursVolunteered();
-					CurrentProfile.appendText(ARV[i].toString());
+					//CurrentProfile.appendText(ARV[i].toString());
 				}
 				
+				Database.getItems().clear();
+				for (int i = 0; i < ARV.length; i++) {
+					v.add(ARV[i]);
+				}
 				
-				System.out.println(Arrays.asList(ia).toString());
+				Queue<Volunteer> volun = new LinkedList<Volunteer>();
+				for (int i = 0; i < ARV.length; i++) {
+					volun.add(v.get(i));
+				}
+				for (int i = 0; i < ARV.length; i++) {
+					Database.getItems().add(volun.remove());
+				}
+				
+				//System.out.println(Arrays.asList(ia).toString());
 			}
 			else if(Employee.isSelected()){
-				CurrentProfile.clear();
+				//CurrentProfile.clear();
 				HashMap<Integer, EmployeeClass> HME = EM.getEmployees();
 				Set<Integer> keyE = HME.keySet();
 				EmployeeClass[] ARE = new EmployeeClass[keyE.size()];
 				Iterator ITE = keyE.iterator();
 				for (int i = 0; i < keyE.size(); i++) {
 					ARE[i] = HME.get(ITE.next());
-					System.out.println(ARE[i].getLastName());
+					//System.out.println(ARE[i].getLastName());
 				}
 				
 				QuickSortByLeastHours2 QS = new QuickSortByLeastHours2(ARE);
@@ -815,28 +838,33 @@ public class Admin_Controller {
 				int[] ia = new int[HME.size()]; 
 				for (int i = 0; i < keyE.size(); i++) {
 					ia[i] = ARE[i].getWorkinHours();
-					CurrentProfile.appendText(ARE[i].toString());
+					//CurrentProfile.appendText(ARE[i].toString());
 				}
 				
+				Database.getItems().clear();
+				for (int i = 0; i < ARE.length; i++) {
+					Database.getItems().add(ARE[i]);
+				}
 				
-				
-				System.out.println(Arrays.asList(ia).toString());
+				//System.out.println(Arrays.asList(ia).toString());
+			} else if (Admin1.isSelected()) {
+				CurrentProfile.appendText("\n\nAdmin do not have hours");
 			}
 			
 		});
+		
 		Database.setOnMouseClicked((MouseEvent event) -> {
 			if (Volunteer1.isSelected()) {
 				if (event.getButton().equals(MouseButton.PRIMARY)) {
-					clicked++;
 					int index = Database.getSelectionModel().getSelectedIndex();
 					if (index == -1) {
 						// does nothing if nothing is clicked on
 					} else {
 						Volunteer v = (Volunteer) Database.getItems().get(index);
-						if ((clicked % 2) == 0) {
+						if (v.getCourtOrdered() == true) {
 							v.setCourtOrdered(false);
 							VT.updateVolunteer(v);
-						} else if ((clicked % 2) == 1) {
+						} else if (v.getCourtOrdered() == false) {
 							v.setCourtOrdered(true);
 							VT.updateVolunteer(v);
 						} else {
