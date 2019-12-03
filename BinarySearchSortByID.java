@@ -40,9 +40,9 @@ public class BinarySearchSortByID {
 		}
 		
 		try {
-			int low = 1;
-			int high = emps.size();
-			int middle = (low + high - 1) / 2;
+			int low = 0;
+			int high = emps.size() - 1;
+			int middle = (low + high) / 2;
 			
 			do {
 				if (id == emps.get(middle).getEmployeeID()) {
@@ -52,7 +52,7 @@ public class BinarySearchSortByID {
 				} else {
 					low = middle + 1;
 				}
-				middle = (low + high - 1) / 2;
+				middle = (low + high) / 2;
 			} while (low <= high);
 			return new EmployeeClass();
 		} catch (NullPointerException ex) { /** don't do anything if middle number 
@@ -69,9 +69,9 @@ public class BinarySearchSortByID {
 		}
 		
 		try {
-			int low = 1;
-			int high = ad.size();
-			int middle = (low + high - 1) / 2;
+			int low = 0;
+			int high = ad.size() - 1;
+			int middle = (low + high) / 2;
 			
 			do {
 				if (id == ad.get(middle).getId()) {
@@ -81,7 +81,7 @@ public class BinarySearchSortByID {
 				} else {
 					low = middle + 1;
 				}
-				middle = (low + high - 1) / 2;
+				middle = (low + high) / 2;
 			} while (low <= high);
 			return new Admin();
 		} catch (NullPointerException ex) { // don't do anything if middle number 
@@ -98,9 +98,9 @@ public class BinarySearchSortByID {
 		}
 		
 		try {
-			int low = 1;
-			int high = v.size();
-			int middle = (low + high - 1) / 2;
+			int low = 0;
+			int high = v.size() - 1;
+			int middle = (low + high) / 2;
 			
 			do {
 				if (id == v.get(middle).getVolunteerID()) {
@@ -110,7 +110,7 @@ public class BinarySearchSortByID {
 				} else {
 					low = middle + 1;
 				}
-				middle = (low + high - 1) / 2;
+				middle = (low + high) / 2;
 			} while (low <= high);
 			return new Volunteer();
 		} catch (NullPointerException ex) { // don't do anything if middle number 
