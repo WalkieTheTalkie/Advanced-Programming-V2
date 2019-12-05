@@ -35,8 +35,8 @@ public class HeapStringFirstNameSortTest2 {
 		System.out.println();
 		System.out.println();
 		System.out.println(Arrays.asList(arr));
-		HeapStringFirstNameSort a = new HeapStringFirstNameSort(arr);
-		arr = a.HEAPSort();
+		HeapStringFirstNameSort a = new HeapStringFirstNameSort();
+		arr = a.HEAPSort(arr);
 		System.out.println();
 		System.out.println();
 		System.out.println();

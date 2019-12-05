@@ -1,153 +1,82 @@
 package application;
 
 public class HeapStringFirstNameSort {
-	static Person[] are = new Person[10];
+	static Person[] are = new Person[20];
 
-	HeapStringFirstNameSort(Person[] ARE) {
-		are = ARE;
+	HeapStringFirstNameSort() {
+		
 	}
-
-
-		// Used for index in heap
-		static int x = -1;
-
-		// Predefining the heap array
-		static Person[] heap = new Person[1000];
-
-		// Defining formation of the heap
-		static void heapForm(Person arr) {
-			x++;
-
-			heap[x] = arr;
-
-			int child = x;
-
-			Person tmp;
-
-			int index = x / 2;
-
-			// Iterative heapiFy
-			while (index >= 0) {
-
-				// Just swapping if the element
-				// is smaller than already
-				// stored element
-				if (heap[index].getFirstName().compareToIgnoreCase(heap[child].getFirstName()) > 0) {
-
-					// Swapping the current index
-					// with its child
-					tmp = heap[index];
-					heap[index] = heap[child];
-					heap[child] = tmp;
-					child = index;
-
-					// Moving upward in the
-					// heap
-					index = index / 2;
-				} else {
-					break;
-				}
-			}
-		}
-
-		// Defining heap sort
-		static void heapSort() {
-			int left1, right1;
-			Person[] ki = new Person[are.length];
-			int in = 0;
-			while (x >= 0) {
-				
-				Person k;
-				k = heap[0];
-
-				// Taking output of
-				// the minimum element
-				System.out.print(k.getFirstName() + " ");
-				ki[in] = k;
-				in++;
-				
-
-				// Set first element
-				// as a last one
-				heap[0] = heap[x];
-
-				// Decrement of the
-				// size of the string
-				x = x - 1;
-
-				Person tmp;
-
-				int index = 0;
-
-				int length = x;
-
-				// Initilizing the left
-				// and right index
-				left1 = 1;
-
-				right1 = left1 + 1;
-
-				while (left1 <= length) {
-
-					// Process of heap sort
-					// If root element is
-					// minimum than its both
-					// of the child then break
-					if (heap[index].getFirstName().compareToIgnoreCase(heap[left1].getFirstName()) <= 0
-							&& heap[index].getFirstName().compareToIgnoreCase(heap[right1].getFirstName()) <= 0) {
-						break;
-					}
-
-					// Otherwise checking that
-					// the child which one is
-					// smaller, swap them with
-					// parent element
-					else {
-
-						// Swapping
-						if (heap[left1].getFirstName().compareToIgnoreCase(heap[right1].getFirstName()) < 0) {
-							tmp = heap[index];
-							heap[index] = heap[left1];
-							heap[left1] = tmp;
-							index = left1;
-						}
-
-						else {
-							tmp = heap[index];
-							heap[index] = heap[right1];
-							heap[right1] = tmp;
-							index = right1;
-						}
-					}
-
-					// Changing the left index
-					// and right index
-					left1 = 2 * left1;
-					right1 = left1 + 1;
-				}
-			}
-			are = ki; 
-		}
-
-		// Utility function
-		static void sort(Person[] arr, int n) {
-
-			// To heapiFy
-			for (int i = 0; i < n; i++) {
-				heapForm(arr[i]);
-			}
-
-			// Calling heap sort function
-			heapSort();
-		}
+	
+	public static void  heaper(Person[] are2) 
+    { 
+        int len = are2.length; 
+  
+        // step1: build heap 
+        for (int i = len / 2 - 1; i >= 0; i--) 
+            maxHeapify(are2, len, i); 
+  
+        // step2: extract each string in the list
+        for (int i=len-1; i>=0; i--) 
+        { 
+            // Put current node at bottom
+            Person temp = are2[0]; 
+            are2[0] = are2[i]; 
+            are2[i] = temp; 
+  
+            // change tree to be constrained by maximum of parent vs child
+            maxHeapify(are2, i, 0); 
+        } 
+    } 
+  
+    static void maxHeapify(Person[] are2, int n, int i) 
+    { 
+        int largest = i;   // initiate  
+        int l = 2 * i + 1; // left = 2 x i + 1 
+        int r = 2 * i + 2; // right = 2 x i + 2 
+  
+        // check if left child exists and compare to root
+        if (l < n && are2[l].getFirstName().compareToIgnoreCase(are2[largest].getFirstName()) > 0) 
+            largest = l; 
+  
+        // Check if right child exits and compare to root
+        if (r < n && are2[r].getFirstName().compareToIgnoreCase(are2[largest].getFirstName()) > 0) 
+            largest = r; 
+  
+        // If tree structure needs to change
+        if (largest != i) 
+        { 
+            Person swap = are2[i]; 
+            are2[i] = are2[largest]; 
+            are2[largest] =  swap; 
+  
+            // Recursively deal with the sub-tree 
+            maxHeapify(are2, n, largest); 
+        } 
+    } 
+  
+    static void printArray(Person[] are2) 
+    { 
+        int n = are2.length; 
+        for (int i=0; i<n; ++i) 
+            System.out.print(are2[i].getFirstName()+" "); 
+        System.out.println(); 
+    } 
 
 		// Driver Code
-		public static Person[] HEAPSort() {
+		public static Person[] HEAPSort(Person[] are) {
 
-			int n = are.length;
-
-			sort(are, n);
-
-			return are;
+			 
+	        System.out.println("array ");
+	        for(int i = 0;i < are.length;i++) {
+	        	System.out.print(are[i] + " ");
+	        }
+	        System.out.println();
+	 
+	        HeapStringFirstNameSort.heaper(are); 
+	  
+	        System.out.println("Sorted array is"); 
+	        printArray(are);
+	        
+			return are; 
 		}
 	}
