@@ -532,8 +532,8 @@ public class Admin_Controller {
 					ARV[i] = HMV.get(ITV.next());
 				}
 
-				HeapStringFirstNameSort JB = new HeapStringFirstNameSort(ARV);
-				ARV = JB.HEAPSort();
+				HeapStringFirstNameSort JB = new HeapStringFirstNameSort();
+				ARV = JB.HEAPSort(ARV);
 
 				//System.out.println();
 				//System.out.println("Sorted :");
@@ -559,8 +559,8 @@ public class Admin_Controller {
 					ARA[i] = HMA.get(ITA.next());
 				}
 
-				HeapStringFirstNameSort JB = new HeapStringFirstNameSort(ARA);
-				ARA = JB.HEAPSort();
+				HeapStringFirstNameSort JB = new HeapStringFirstNameSort();
+				ARA = JB.HEAPSort(ARA);
 
 				//System.out.println();
 				//System.out.println("Sorted :");
@@ -584,8 +584,8 @@ public class Admin_Controller {
 					ARE[i] = HME.get(ITE.next());
 				}
 
-				HeapStringFirstNameSort JB = new HeapStringFirstNameSort(ARE);
-				ARE = JB.HEAPSort();
+				HeapStringFirstNameSort JB = new HeapStringFirstNameSort();
+				ARE = JB.HEAPSort(ARE);
 
 				//System.out.println();
 				//System.out.println("Sorted :");
